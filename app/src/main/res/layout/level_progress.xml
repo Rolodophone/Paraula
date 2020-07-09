@@ -17,7 +17,6 @@
         android:layout_height="80dp"
         app:cpb_background_progressbar_color="@android:color/darker_gray"
         app:cpb_background_progressbar_width="10dp"
-        app:cpb_progress="30"
         app:cpb_progress_max="100"
         app:cpb_progressbar_color="@color/colorPrimary"
         app:cpb_progressbar_width="10dp"
