@@ -8,32 +8,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/back_button"
-            layout="@layout/back_button"
-            android:layout_width="wrap_content"
+        <FrameLayout
+            android:id="@+id/top_bar"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:padding="16dp">
+
+            <include
+                android:id="@+id/progress_bar"
+                layout="@layout/level_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/top_shadow"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_bar"
+            app:srcCompat="@drawable/shadow"
+            tools:ignore="ContentDescription" />
 
         <com.otaliastudios.zoom.ZoomLayout
             android:id="@+id/world_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@color/colorSecondary"
             app:alignment="center"
             app:animationDuration="280"
             app:flingEnabled="true"
             app:hasClickableChildren="false"
             app:horizontalPanEnabled="true"
-            app:layout_constraintBottom_toTopOf="@+id/back_button"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_shadow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progress_bar"
+            app:layout_constraintTop_toBottomOf="@+id/top_shadow"
             app:maxZoom="2.5"
             app:maxZoomType="zoom"
             app:minZoom="0.7"
@@ -48,17 +62,48 @@
             app:transformationGravity="auto"
             app:twoFingersScrollEnabled="true"
             app:verticalPanEnabled="true"
-            app:zoomEnabled="true"/>
+            app:zoomEnabled="true">
 
-        <include
-            android:id="@+id/progress_bar"
-            layout="@layout/level_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <net.rolodophone.paraula.world.WorldLevel
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </com.otaliastudios.zoom.ZoomLayout>
+
+        <ImageView
+            android:id="@+id/bottom_shadow"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:srcCompat="@drawable/shadow"
+            tools:ignore="ContentDescription"
+            android:rotation="180"/>
+
+        <FrameLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <include
+                android:id="@+id/back_button"
+                layout="@layout/back_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
