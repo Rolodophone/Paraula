@@ -44,10 +44,10 @@
             app:flingEnabled="true"
             app:hasClickableChildren="false"
             app:horizontalPanEnabled="true"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_shadow"
+            app:layout_constraintBottom_toBottomOf="@+id/bottom_shadow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/top_shadow"
+            app:layout_constraintTop_toTopOf="@+id/top_shadow"
             app:maxZoom="2.5"
             app:maxZoomType="zoom"
             app:minZoom="0.7"
@@ -64,16 +64,13 @@
             app:verticalPanEnabled="true"
             app:zoomEnabled="true">
 
-            <LinearLayout
+            <net.rolodophone.paraula.world.WorldLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <net.rolodophone.paraula.world.WorldLevel
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <net.rolodophone.paraula.world.WorldLevel/>
 
-            </LinearLayout>
+            </net.rolodophone.paraula.world.WorldLayout>
 
         </com.otaliastudios.zoom.ZoomLayout>
 
