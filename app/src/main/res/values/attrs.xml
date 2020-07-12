@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="WorldLevel">
-        <attr name="nextLevelLeft" format="reference"/>
-        <attr name="nextLevelUp" format="reference"/>
-        <attr name="nextLevelRight" format="reference"/>
-        <attr name="nextLevelDown" format="reference"/>
-    </declare-styleable>
-</resources>
