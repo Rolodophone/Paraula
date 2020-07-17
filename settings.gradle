@@ -1,2 +1,3 @@
-include ':app'
+include ':android-app'
+include ':multiplatform'
 rootProject.name = "Paraula"
