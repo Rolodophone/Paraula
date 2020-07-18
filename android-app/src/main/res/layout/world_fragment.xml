@@ -35,40 +35,49 @@
             app:srcCompat="@drawable/shadow"
             tools:ignore="ContentDescription" />
 
-        <com.otaliastudios.zoom.ZoomLayout
-            android:id="@+id/world_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:alignment="center"
-            app:animationDuration="280"
-            app:flingEnabled="true"
-            app:hasClickableChildren="false"
-            app:horizontalPanEnabled="true"
-            app:layout_constraintBottom_toBottomOf="@+id/bottom_shadow"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/top_shadow"
-            app:maxZoom="2.5"
-            app:maxZoomType="zoom"
-            app:minZoom="0.7"
-            app:minZoomType="zoom"
-            app:oneFingerScrollEnabled="true"
-            app:overPinchable="true"
-            app:overScrollHorizontal="true"
-            app:overScrollVertical="true"
-            app:scrollEnabled="true"
-            app:threeFingersScrollEnabled="true"
-            app:transformation="centerCrop"
-            app:transformationGravity="auto"
-            app:twoFingersScrollEnabled="true"
-            app:verticalPanEnabled="true"
-            app:zoomEnabled="true">
+<!--        <com.otaliastudios.zoom.ZoomLayout-->
+<!--            android:id="@+id/world_view"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:alignment="center"-->
+<!--            app:animationDuration="280"-->
+<!--            app:flingEnabled="true"-->
+<!--            app:hasClickableChildren="false"-->
+<!--            app:horizontalPanEnabled="true"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/bottom_shadow"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/top_shadow"-->
+<!--            app:maxZoom="2.5"-->
+<!--            app:maxZoomType="zoom"-->
+<!--            app:minZoom="0.7"-->
+<!--            app:minZoomType="zoom"-->
+<!--            app:oneFingerScrollEnabled="true"-->
+<!--            app:overPinchable="true"-->
+<!--            app:overScrollHorizontal="true"-->
+<!--            app:overScrollVertical="true"-->
+<!--            app:scrollEnabled="true"-->
+<!--            app:threeFingersScrollEnabled="true"-->
+<!--            app:transformation="centerCrop"-->
+<!--            app:transformationGravity="auto"-->
+<!--            app:twoFingersScrollEnabled="true"-->
+<!--            app:verticalPanEnabled="true"-->
+<!--            app:zoomEnabled="true">-->
+
+<!--            <net.rolodophone.paraula.world.WorldView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
+
+<!--        </com.otaliastudios.zoom.ZoomLayout>-->
 
             <net.rolodophone.paraula.world.WorldView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </com.otaliastudios.zoom.ZoomLayout>
+                android:id="@+id/world_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/bottom_shadow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/top_shadow"/>
 
         <ImageView
             android:id="@+id/bottom_shadow"

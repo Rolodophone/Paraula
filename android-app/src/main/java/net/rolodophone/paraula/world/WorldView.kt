@@ -5,22 +5,18 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import net.rolodophone.paraula.multiplatform.WorldViewMP
 
 class WorldView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0): View(context, attrs, defStyleAttr) {
 
-    private companion object {
+    private val levelPaint = Paint()
+    private val pathPaint = Paint()
 
-        val levelPaint = Paint()
-        val pathPaint = Paint()
-
-        init {
-            levelPaint.color = Color.BLUE
-            pathPaint.color = Color.GRAY
-        }
+    init {
+        levelPaint.color = Color.BLUE
+        pathPaint.color = Color.GRAY
     }
 
     init {

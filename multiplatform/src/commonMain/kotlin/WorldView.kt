@@ -21,10 +21,14 @@ object WorldViewMP {
                 Direction.BOTTOM -> bottom = null
             }
         }
+
+        fun copy(): Level = Level(left?.copy(), top?.copy(), right?.copy(), bottom?.copy())
+
+        fun isEmpty() = left == null && top == null && right == null && bottom == null
     }
-    
-    const val LEVEL_RADIUS = 30f
-    const val PATH_LENGTH = 60f
+
+    const val LEVEL_RADIUS = 60f
+    const val PATH_LENGTH = 150f
 
     private val rootLevel = Level(
         right = Level(),
@@ -40,15 +44,15 @@ object WorldViewMP {
 
 
     fun click() {
-        
+
     }
 
 
     fun draw(drawLevel: (x: Float, y: Float) -> Unit, drawPath: (startX: Float, startY: Float, endX: Float, endY: Float) -> Unit) {
-        var x = 0f
-        var y = 0f
+        var x = 100f
+        var y = 100f
         val levelDirections = mutableListOf<Direction>()
-        val editableRootLevel = rootLevel
+        val editableRootLevel = rootLevel.copy()
 
         do {
             drawLevel(x, y)
@@ -81,6 +85,13 @@ object WorldViewMP {
                         if (levelDirections.size >= 1) {
                             val parentLevel = levelDirections.dropLast(1).fold(editableRootLevel) { level: Level, direction: Direction -> level.get(direction)!! }
                             parentLevel.remove(levelDirections.last())
+
+                            when (levelDirections.last()) {
+                                Direction.LEFT -> x += PATH_LENGTH
+                                Direction.TOP -> y += PATH_LENGTH
+                                Direction.RIGHT -> x -= PATH_LENGTH
+                                Direction.BOTTOM -> y -= PATH_LENGTH
+                            }
                             levelDirections.removeAt(levelDirections.size - 1)
                         }
                     }
@@ -89,7 +100,7 @@ object WorldViewMP {
 
             log("Drew level at ($x, $y)")
 
-        } while (levelDirections.size != 0)
+        } while (!editableRootLevel.isEmpty())
     }
 
 
