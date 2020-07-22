@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created using Krita: http://krita.org -->
+<svg xmlns="http://www.w3.org/2000/svg" width="25.2pt" height="25.2pt" viewBox="0 0 25.2 25.2">
+<defs>
+  <linearGradient id="gradient0" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="1" y2="1" spreadMethod="pad">
+   <stop stop-color="#002699" offset="0" stop-opacity="1"/>
+   <stop stop-color="#0040ff" offset="1" stop-opacity="1"/>
+  </linearGradient>
+ </defs>
+<circle id="shape0" transform="matrix(0.369411735339708 0 0 0.369729700338279 1.539810809984 1.48605714484339)" r="29.9999999999976" cx="29.9999999999976" cy="29.9999999999976" fill="url(#gradient0)" fill-rule="evenodd" stroke="#0046aa" stroke-width="6.59999999999947" stroke-linecap="square" stroke-linejoin="bevel"/>
+</svg>
