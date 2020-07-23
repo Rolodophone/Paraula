@@ -22,12 +22,21 @@
         android:id="@+id/worldFragment"
         android:name="net.rolodophone.paraula.world.WorldFragment"
         android:label="WorldFragment"
-        tools:layout="@layout/world_fragment"/>
+        tools:layout="@layout/world_fragment">
+        <action
+            android:id="@+id/action_worldFragment_to_learningActivity"
+            app:destination="@id/learningActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/endlessFragment"
         android:name="net.rolodophone.paraula.endless.EndlessFragment"
         android:label="EndlessFragment"
         tools:layout="@layout/endless_fragment" />
+    <activity
+        android:id="@+id/learningActivity"
+        android:name="net.rolodophone.paraula.learning.LearningActivity"
+        android:label="LearningActivity"
+        tools:layout="@layout/learning_activity"/>
 
 </navigation>

@@ -18,6 +18,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".learning.LearningActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/LearningTheme"/>
+
     </application>
 
 </manifest>

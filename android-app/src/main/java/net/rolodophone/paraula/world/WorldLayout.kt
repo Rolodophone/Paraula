@@ -1,6 +1,7 @@
 package net.rolodophone.paraula.world
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import net.rolodophone.paraula.R
+import net.rolodophone.paraula.learning.LearningActivity
 import net.rolodophone.paraula.toPx
 
 class WorldLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : ViewGroup(context, attrs, defStyleAttr) {
@@ -28,8 +30,9 @@ class WorldLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
             inflate(context, R.layout.level_button, this)
         }
 
-        // make button smaller when clicked
         for ((i, child) in children.withIndex()) {
+
+            // make button smaller when clicked
             child.setOnTouchListener { _, event ->
 
                 val x = levels[i].x.toPx(context)
@@ -49,6 +52,7 @@ class WorldLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         child.layout(x-s, y-s, x+s, y+s)
 
                         performClick()
+                        context.startActivity(Intent(context, LearningActivity::class.java))
                     }
                 }
                 
