@@ -13,14 +13,13 @@
     </style>
 
 
-    <style name="LearningTheme" parent="MainTheme">
+    <style name="LearningTheme" parent="Theme.AppCompat.NoActionBar">
 
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">false</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/colorPrimary</item>
         <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/colorPrimary</item>
 
         <item name="android:colorBackground">@color/colorPrimary</item>
+
         <item name="colorPrimary">@android:color/white</item>
         <item name="colorPrimaryDark">@android:color/darker_gray</item>
         <item name="colorAccent">@android:color/white</item>
