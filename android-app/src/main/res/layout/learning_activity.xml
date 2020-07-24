@@ -16,6 +16,7 @@
             android:layout_marginTop="16dp"
             android:background="#00000000"
             android:contentDescription="@string/close_button_text"
+            android:onClick="up"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_close_32" />
