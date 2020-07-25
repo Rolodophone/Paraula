@@ -17,12 +17,6 @@ class WorldLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
     // LEVEL BUTTONS
 
-    private val levels = listOf(
-        Level(196, 42),
-        Level(210, 105),
-        Level(208, 173)
-    )
-
     override fun onFinishInflate() {
         super.onFinishInflate()
 
@@ -33,7 +27,7 @@ class WorldLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
         for ((i, child) in children.withIndex()) {
 
             // make button smaller when clicked
-            child.setOnTouchListener { _, event ->
+            child.setOnTouchListener { view, event ->
 
                 val x = levels[i].x.toPx(context)
                 val y = levels[i].y.toPx(context)
@@ -52,7 +46,10 @@ class WorldLayout @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         child.layout(x-s, y-s, x+s, y+s)
 
                         performClick()
-                        context.startActivity(Intent(context, LearningActivity::class.java))
+
+                        val intent = Intent(context, LearningActivity::class.java)
+                        intent.putExtra(LearningActivity.LEVEL_INDEX_EXTRA, indexOfChild(view))
+                        context.startActivity(intent)
                     }
                 }
                 
