@@ -6,8 +6,9 @@
     android:layout_marginTop="80dp"
     android:contentDescription="@string/learning_translation_text_input_cd"
     android:gravity="center"
+    android:imeOptions="actionDone"
     android:importantForAutofill="no"
-    android:inputType="textMultiLine|text"
+    android:inputType="text"
     android:minEms="5"
     tools:ignore="LabelFor">
 

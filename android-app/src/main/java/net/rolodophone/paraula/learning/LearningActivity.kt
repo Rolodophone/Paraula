@@ -19,11 +19,9 @@ class LearningActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = DataBindingUtil.setContentView<LearningActivityBinding>(this, R.layout.learning_activity)
+        DataBindingUtil.setContentView<LearningActivityBinding>(this, R.layout.learning_activity)
 
         level = levels[intent.getIntExtra(LEVEL_INDEX_EXTRA, -1)]
-        binding.level = level
-
     }
 
     @Suppress("UNUSED_PARAMETER")

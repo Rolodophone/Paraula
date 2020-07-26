@@ -3,12 +3,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-        <variable
-            name="level"
-            type="net.rolodophone.paraula.world.Level" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -41,8 +35,9 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/learning_activity_area"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:name="net.rolodophone.paraula.learning.TranslationFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -50,8 +45,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/learning_progress"
-            android:name="net.rolodophone.paraula.learning.TranslationFragment">
+            app:layout_constraintTop_toBottomOf="@+id/learning_progress">
 
         </androidx.fragment.app.FragmentContainerView>
 

@@ -39,6 +39,7 @@ class TranslationFragment : Fragment() {
 		root.addView(translationTextView)
 
 		translationEditText = inflater.inflate(R.layout.learning_translation_text_input, root, false) as EditText
+		translationEditText.setOnEditorActionListener { _, _, _ -> submitTranslation() }
 		root.addView(translationEditText)
 
 		nextActivity()
@@ -49,13 +50,15 @@ class TranslationFragment : Fragment() {
 	private fun nextActivity() {
 		phraseIndex++
 
-		if (phraseIndex >= level.phrases.size) finishLevel()
+		if (phraseIndex >= level.phrases.size) {
+			finishLevel()
+			return
+		}
 
 		phrase = level.phrases[phraseIndex]
 		val example = phrase.examples.plus(Example(phrase.english, phrase.catalan)).random() //add example containing just the phrase so sometimes you get the phrase alone
 		//TODO make sure first time you see a word you definitely get some context
 
-		val phraseText: String
 		val exampleText: String
 
 		if (nextBoolean()) {
@@ -79,7 +82,7 @@ class TranslationFragment : Fragment() {
 		translationTextView.text = textToDisplay.replace(0, 1, textToDisplay[0].toUpperCase().toString())
 	}
 
-	private fun submitTranslation() {
+	private fun submitTranslation(): Boolean {
 		if (phrase.translate(translationEditText.text.toString()) == phraseText) {
 			//user got it correct
 
@@ -92,6 +95,8 @@ class TranslationFragment : Fragment() {
 
 			//TODO
 		}
+
+		return true
 	}
 
 	private fun finishLevel() {
