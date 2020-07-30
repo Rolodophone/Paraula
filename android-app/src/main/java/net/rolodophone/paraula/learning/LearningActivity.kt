@@ -2,12 +2,12 @@ package net.rolodophone.paraula.learning
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import net.rolodophone.paraula.R
 import net.rolodophone.paraula.databinding.LearningActivityBinding
-import net.rolodophone.paraula.world.Level
-import net.rolodophone.paraula.world.levels
+import net.rolodophone.paraula.world.*
 
 class LearningActivity : AppCompatActivity() {
 
@@ -16,10 +16,13 @@ class LearningActivity : AppCompatActivity() {
     }
 
     lateinit var level: Level
+    lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DataBindingUtil.setContentView<LearningActivityBinding>(this, R.layout.learning_activity)
+        val binding = DataBindingUtil.setContentView<LearningActivityBinding>(this, R.layout.learning_activity)
+
+        progressBar = binding.learningProgress
 
         level = levels[intent.getIntExtra(LEVEL_INDEX_EXTRA, -1)]
     }
