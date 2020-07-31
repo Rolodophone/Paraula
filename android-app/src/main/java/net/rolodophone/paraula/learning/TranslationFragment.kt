@@ -23,7 +23,10 @@ class TranslationFragment : Fragment() {
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 		val root = inflater.inflate(R.layout.learning_translation_fragment, container, false) as ViewGroup
 
-		progressBar = (requireActivity() as LearningActivity).progressBar
+		val learningActivity = requireActivity() as LearningActivity
+
+		progressBar = learningActivity.progressBar
+		progressBar.max = learningActivity.level.phrases.size
 
 		textView = inflater.inflate(R.layout.learning_translation_text, root, false) as TextView
 		vm.textViewText.observe(viewLifecycleOwner) {
@@ -55,7 +58,13 @@ class TranslationFragment : Fragment() {
 	private fun nextPhrase() {
 
 		// try to move on to the next phrase, else exit activity
-		if (!vm.nextTranslationText()) finishLevel()
+		if (vm.nextTranslationText()) {
+			progressBar.progress++
+		}
+
+		else {
+			finishLevel()
+		}
 	}
 
 
