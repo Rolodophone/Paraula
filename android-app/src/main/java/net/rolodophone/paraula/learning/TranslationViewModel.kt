@@ -27,7 +27,6 @@ class TranslationViewModel(private val phrasesIterator: Iterator<Phrase>): ViewM
 
 			//add example containing just the phrase so sometimes you get the phrase alone
 			val example = phrase.examples.plus(Example(phrase.english, phrase.catalan)).random()
-			//TODO make sure first time you see a word you definitely get some context
 
 			val exampleText: String
 

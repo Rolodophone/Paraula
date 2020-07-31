@@ -35,8 +35,8 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/learning_activity_area"
             android:name="net.rolodophone.paraula.learning.TranslationFragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
