@@ -1,5 +1,6 @@
 package net.rolodophone.paraula.learning
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.*
 import android.widget.*
@@ -15,6 +16,8 @@ class TranslationFragment : Fragment() {
 	private lateinit var progressBar: ProgressBar
 
 	private val vm: TranslationViewModel by lazy { getViewModel { TranslationViewModel((requireActivity() as LearningActivity).level.phrases.iterator()) } }
+
+	private var mediaPlayer: MediaPlayer? = null
 
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -36,6 +39,19 @@ class TranslationFragment : Fragment() {
 	}
 
 
+	override fun onStart() {
+		super.onStart()
+		mediaPlayer = MediaPlayer.create(context, R.raw.correct)
+	}
+
+
+	override fun onStop() {
+		super.onStop()
+		mediaPlayer?.release()
+		mediaPlayer = null
+	}
+
+
 	private fun nextPhrase() {
 
 		// try to move on to the next phrase, else exit activity
@@ -49,7 +65,10 @@ class TranslationFragment : Fragment() {
 
 			nextPhrase()
 			editText.text.clear()
-			// TODO add sound effect
+
+			// play ding sound effect
+			mediaPlayer?.seekTo(0)
+			mediaPlayer?.start()
 		}
 		else {
 			//user got it wrong
