@@ -22,7 +22,8 @@
         <activity android:name=".learning.LearningActivity"
             android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/LearningTheme"/>
+            android:theme="@style/LearningTheme"
+            android:windowSoftInputMode="adjustResize"/>
 
     </application>
 

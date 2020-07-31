@@ -6,7 +6,9 @@ import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import com.google.android.material.snackbar.Snackbar
 import net.rolodophone.paraula.*
+import kotlin.random.Random.Default.nextInt
 
 @Suppress("UNUSED")
 class TranslationFragment : Fragment() {
@@ -17,7 +19,41 @@ class TranslationFragment : Fragment() {
 
 	private val vm: TranslationViewModel by lazy { getViewModel { TranslationViewModel((requireActivity() as LearningActivity).level.phrases.iterator()) } }
 
-	private var mediaPlayer: MediaPlayer? = null
+	private var correctMediaPlayer: MediaPlayer? = null
+	private var wrongMediaPlayer: MediaPlayer? = null
+
+
+	private val correctAnswerStrings = setOf(
+		"Great!",
+		"Keep it up!",
+		"Wow, you're improving fast",
+		"Just think of all the progress you've made!",
+		"Fantastic work!",
+		"Brilliant job!",
+		"Ding!",
+		"Yeah!"
+	)
+	private val wrongAnswerStrings = setOf(
+		"Oops, keep trying!",
+		"Have another go!",
+		"Uh oh, try again!",
+		"Almost!",
+		"You've got this!",
+		"Mistakes are natural",
+		"Getting stuff wrong is part of the learning process",
+		"Don't worry, you doing great!",
+		"Oops, try again",
+		"Try again",
+		"Oops, wrong",
+		"Incorrect, this time",
+		"Nearly!",
+		"Not quite!",
+		"Give it another shot",
+		"If you can't remember, have a guess",
+		"If there's context, look at it and take a guess",
+		"Studies show that near misses improve retention",
+		"What a fool! How could you get that wrong? Just kidding, you're doing great :-)"
+	)
 
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -44,33 +80,17 @@ class TranslationFragment : Fragment() {
 
 	override fun onStart() {
 		super.onStart()
-		mediaPlayer = MediaPlayer.create(context, R.raw.correct)
+		correctMediaPlayer = MediaPlayer.create(context, R.raw.correct)
+		wrongMediaPlayer = MediaPlayer.create(context, R.raw.wrong)
 	}
 
 
 	override fun onStop() {
 		super.onStop()
-		mediaPlayer?.release()
-		mediaPlayer = null
-	}
-
-
-	private fun nextPhrase() {
-
-		// try to move on to the next phrase, else exit activity
-		if (vm.nextTranslationText()) {
-			progressBar.progress++
-
-			editText.text.clear()
-
-			// play ding sound effect
-			mediaPlayer?.seekTo(0)
-			mediaPlayer?.start()
-		}
-
-		else {
-			finishLevel()
-		}
+		correctMediaPlayer?.release()
+		correctMediaPlayer = null
+		wrongMediaPlayer?.release()
+		wrongMediaPlayer = null
 	}
 
 
@@ -78,12 +98,31 @@ class TranslationFragment : Fragment() {
 		if (vm.phrase.translate(editText.text.toString()) == vm.phraseText) {
 			//user got it correct
 
-			nextPhrase()
+			// play ding sound effect
+			correctMediaPlayer?.seekTo(0)
+			correctMediaPlayer?.start()
+
+			if (vm.nextTranslationText()) { // try to move to the next phrase, else finish the level
+				progressBar.progress++
+
+				editText.text.clear()
+
+				if (nextInt(8) == 0) Snackbar.make(requireView(), correctAnswerStrings.random(), Snackbar.LENGTH_SHORT).show()
+			}
+
+			else {
+				finishLevel()
+			}
 		}
+
 		else {
 			//user got it wrong
 
-			//TODO
+			// play wrong sound effect
+			wrongMediaPlayer?.seekTo(0)
+			wrongMediaPlayer?.start()
+
+			Snackbar.make(requireView(), wrongAnswerStrings.random(), Snackbar.LENGTH_SHORT).show()
 		}
 
 		return true
