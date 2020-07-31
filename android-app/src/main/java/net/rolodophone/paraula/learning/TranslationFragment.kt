@@ -60,6 +60,12 @@ class TranslationFragment : Fragment() {
 		// try to move on to the next phrase, else exit activity
 		if (vm.nextTranslationText()) {
 			progressBar.progress++
+
+			editText.text.clear()
+
+			// play ding sound effect
+			mediaPlayer?.seekTo(0)
+			mediaPlayer?.start()
 		}
 
 		else {
@@ -73,11 +79,6 @@ class TranslationFragment : Fragment() {
 			//user got it correct
 
 			nextPhrase()
-			editText.text.clear()
-
-			// play ding sound effect
-			mediaPlayer?.seekTo(0)
-			mediaPlayer?.start()
 		}
 		else {
 			//user got it wrong
