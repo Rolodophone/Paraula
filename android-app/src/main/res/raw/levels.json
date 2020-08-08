@@ -1,0 +1,20 @@
+{
+  "levels": [
+    {
+      "type": "vocab", "x": 196, "y": 42, "phrases": [
+        {"english": "hello", "catalan": "hola"},
+        {"english": "I am", "catalan": "soc"}
+      ]
+    },
+    {"type": "wip", "x": 210, "y": 105},
+    {"type": "wip", "x": 208, "y": 173}
+  ],
+
+  "englishExamples": [
+    "hello, I am $"
+  ],
+
+  "catalanExamples": [
+    "hola, soc en $"
+  ]
+}

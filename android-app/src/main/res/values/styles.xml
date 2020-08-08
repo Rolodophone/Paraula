@@ -26,4 +26,9 @@
 
     </style>
 
+
+    <style name="LearningButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
 </resources>

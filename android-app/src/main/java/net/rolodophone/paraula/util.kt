@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.TypedValue
 import androidx.fragment.app.*
 import androidx.lifecycle.*
+import net.rolodophone.paraula.learning.Level
+import java.io.*
 import kotlin.math.roundToInt
 
 /**
@@ -36,3 +38,31 @@ inline fun <reified T : ViewModel> Fragment.getViewModel(noinline creator: () ->
  */
 inline fun <reified T : ViewModel> FragmentActivity.getViewModel(noinline creator: () -> T): T
 		= ViewModelProvider(this, BaseViewModelFactory(creator)).get(T::class.java)
+
+/**
+ * Reads an InputStream into a string
+ */
+fun readTextFile(inputStream: InputStream): String {
+
+	val outputStream = ByteArrayOutputStream()
+	val buf = ByteArray(1024)
+	var len: Int
+
+	try {
+
+		while (inputStream.read(buf).also { len = it } != -1) {
+			outputStream.write(buf, 0, len)
+		}
+
+		outputStream.close()
+		inputStream.close()
+	}
+	catch (e: IOException) {}
+
+	return outputStream.toString()
+}
+
+lateinit var levels: List<Level>
+lateinit var englishExamples: Set<String>
+lateinit var catalanExamples: Set<String>
+fun randomExample(phrase: String) = englishExamples.plus(catalanExamples).filter { phrase in it }.random()
