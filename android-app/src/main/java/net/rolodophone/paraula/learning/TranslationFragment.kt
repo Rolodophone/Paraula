@@ -7,20 +7,22 @@ import android.view.*
 import android.widget.*
 import androidx.core.text.*
 import androidx.fragment.app.Fragment
-import net.rolodophone.paraula.R
+import net.rolodophone.paraula.*
 
-class TranslationFragment(private val phrase: Phrase, private val displayPhrase: String, private val example: String) : Fragment() {
+class TranslationFragment(private val phrase: Phrase, private val language: Language, includeContext: Boolean = false) : Fragment() {
+
+	private val example = if (includeContext) randomExample(phrase, language) else phrase.get(language)
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val root = inflater.inflate(R.layout.learning_translation_fragment, container, false) as ViewGroup
 
 		val textView = inflater.inflate(R.layout.learning_translation_fragment_text, root, false) as TextView
 
-		val (contextBefore, contextAfter) = example.split(displayPhrase, limit = 2)
+		val (contextBefore, contextAfter) = example.split(phrase.get(language), limit = 2)
 
 		val newText = SpannableStringBuilder()
 			.append(contextBefore)
-			.bold { color(Color.WHITE) { append(displayPhrase) } }
+			.bold { color(Color.WHITE) { append(phrase.get(language)) } }
 			.append(contextAfter)
 
 		textView.text = newText
@@ -44,7 +46,7 @@ class TranslationFragment(private val phrase: Phrase, private val displayPhrase:
 	private fun submitTranslation(inputtedText: String) {
 		val activity = requireActivity() as LearningActivity
 
-		if (phrase.translate(displayPhrase) == inputtedText) {
+		if (phrase.translate(inputtedText) in phrase.getAll(language)) {
 			activity.onCorrect()
 			activity.nextScreen()
 		}

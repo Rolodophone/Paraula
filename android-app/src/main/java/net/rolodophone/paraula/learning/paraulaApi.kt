@@ -39,10 +39,34 @@ class Phrase(val english: String, val altEnglish: Set<String>? = null, val catal
 			else -> null
 		}
 	}
+
+	fun get(language: Language) = when (language) {
+		Language.ENGLISH -> english
+		Language.CATALAN -> catalan
+	}
+	
+	fun getAlt(language: Language) = when (language) {
+		Language.ENGLISH -> altEnglish
+		Language.CATALAN -> altCatalan
+	}
+	
+	fun getAll(language: Language) = when (language) {
+		Language.ENGLISH -> allEnglish
+		Language.CATALAN -> allCatalan
+	}
+}
+
+enum class Language {
+	ENGLISH, CATALAN
 }
 
 @JsonClass(generateAdapter = true)
-class Example(val english: String, val catalan: String)
+class Example(val english: String, val catalan: String) {
+	fun get(language: Language) = when (language) {
+		Language.ENGLISH -> english
+		Language.CATALAN -> catalan
+	}
+}
 
 
 @TypeLabel("vocab")
@@ -64,39 +88,33 @@ class VocabLevel(override val x: Int, override val y: Int, val phrases: List<Phr
 		// NewPhraseFragment and easy TranslationFragment for first 3
 		for (phrase in phrases.subList(0, 3)) {
 			screens.add(NewPhraseFragment(phrase))
-			screens.add(TranslationFragment(phrase, phrase.catalan, randomExample(phrase.catalan)))
+			screens.add(TranslationFragment(phrase, Language.CATALAN, includeContext = true))
 		}
 
 		// 2 harder translations for each of first 3
 		val firstTranslationScreens = mutableSetOf<Fragment>()
 		for (phrase in phrases.subList(0, 3)) {
-			if (nextBoolean()) firstTranslationScreens.add(TranslationFragment(phrase, phrase.catalan, phrase.catalan))
-			else               firstTranslationScreens.add(TranslationFragment(phrase, phrase.catalan, randomExample(phrase.catalan)))
-			if (nextBoolean()) firstTranslationScreens.add(TranslationFragment(phrase, phrase.english, phrase.english))
-			else               firstTranslationScreens.add(TranslationFragment(phrase, phrase.english, randomExample(phrase.english)))
+			firstTranslationScreens.add(TranslationFragment(phrase, Language.CATALAN, includeContext = nextBoolean()))
+			firstTranslationScreens.add(TranslationFragment(phrase, Language.ENGLISH, includeContext = nextBoolean()))
 		}
 		screens.addAll(firstTranslationScreens.shuffled())
 
 		// NewPhraseFragment and easy TranslationFragment for 4 and 5
 		for (phrase in phrases.subList(3, 5)) {
 			screens.add(NewPhraseFragment(phrase))
-			screens.add(TranslationFragment(phrase, phrase.catalan, randomExample(phrase.catalan)))
+			screens.add(TranslationFragment(phrase, Language.CATALAN, includeContext = true))
 		}
 
 		// another 2 harder translations for 1-3 along with 4 harder translations for 4-5
 		val secondTranslationScreens = mutableSetOf<Fragment>()
 		for (phrase in phrases.subList(0, 3)) {
-			if (nextBoolean()) secondTranslationScreens.add(TranslationFragment(phrase, phrase.catalan, phrase.catalan))
-			else               secondTranslationScreens.add(TranslationFragment(phrase, phrase.catalan, randomExample(phrase.catalan)))
-			if (nextBoolean()) secondTranslationScreens.add(TranslationFragment(phrase, phrase.english, phrase.english))
-			else               secondTranslationScreens.add(TranslationFragment(phrase, phrase.english, randomExample(phrase.english)))
+			secondTranslationScreens.add(TranslationFragment(phrase, Language.CATALAN, includeContext = nextBoolean()))
+			secondTranslationScreens.add(TranslationFragment(phrase, Language.ENGLISH, includeContext = nextBoolean()))
 		}
 		for (phrase in phrases.subList(3, 5)) {
 			repeat(2) {
-				if (nextBoolean()) secondTranslationScreens.add(TranslationFragment(phrase, phrase.catalan, phrase.catalan))
-				else               secondTranslationScreens.add(TranslationFragment(phrase, phrase.catalan, randomExample(phrase.catalan)))
-				if (nextBoolean()) secondTranslationScreens.add(TranslationFragment(phrase, phrase.english, phrase.english))
-				else               secondTranslationScreens.add(TranslationFragment(phrase, phrase.english, randomExample(phrase.english)))
+				secondTranslationScreens.add(TranslationFragment(phrase, Language.CATALAN, includeContext = nextBoolean()))
+				secondTranslationScreens.add(TranslationFragment(phrase, Language.ENGLISH, includeContext = nextBoolean()))
 			}
 		}
 		screens.addAll(secondTranslationScreens.shuffled())
