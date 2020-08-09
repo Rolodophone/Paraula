@@ -28,7 +28,9 @@
 								"type": "object",
 								"properties": {
 									"english": {"type": "string"},
-									"catalan": {"type": "string"}
+									"altEnglish": {"type": "array", "items": {"type": "string"}},
+									"catalan": {"type": "string"},
+									"altCatalan": {"type": "array", "items": {"type": "string"}}
 								},
 								"required": ["english", "catalan"],
 								"additionalProperties": false
