@@ -23,7 +23,7 @@ sealed class Level {
 	abstract val x: Int
 	abstract val y: Int
 
-	abstract fun getScreens(): List<Fragment>
+	abstract fun getExercises(): List<Fragment>
 }
 
 @JsonClass(generateAdapter = true)
@@ -82,49 +82,49 @@ class VocabLevel(override val x: Int, override val y: Int, val phrases: List<Phr
 		}
 	}
 
-	override fun getScreens(): List<Fragment> {
-		val screens = mutableListOf<Fragment>()
+	override fun getExercises(): List<Fragment> {
+		val exercises = mutableListOf<Fragment>()
 
 		// NewPhraseFragment and easy TranslationFragment for first 3
 		for (phrase in phrases.subList(0, 3)) {
-			screens.add(NewPhraseFragment(phrase))
-			screens.add(TranslationFragment(phrase, Language.CATALAN, includeContext = true))
+			exercises.add(NewPhraseFragment(phrase))
+			exercises.add(TranslationFragment(phrase, Language.CATALAN, includeContext = true))
 		}
 
 		// 2 harder translations for each of first 3
-		val firstTranslationScreens = mutableSetOf<Fragment>()
+		val firstTranslationExercises = mutableSetOf<Fragment>()
 		for (phrase in phrases.subList(0, 3)) {
-			firstTranslationScreens.add(TranslationFragment(phrase, Language.CATALAN, includeContext = nextBoolean()))
-			firstTranslationScreens.add(TranslationFragment(phrase, Language.ENGLISH, includeContext = nextBoolean()))
+			firstTranslationExercises.add(TranslationFragment(phrase, Language.CATALAN, includeContext = nextBoolean()))
+			firstTranslationExercises.add(TranslationFragment(phrase, Language.ENGLISH, includeContext = nextBoolean()))
 		}
-		screens.addAll(firstTranslationScreens.shuffled())
+		exercises.addAll(firstTranslationExercises.shuffled())
 
 		// NewPhraseFragment and easy TranslationFragment for 4 and 5
 		for (phrase in phrases.subList(3, 5)) {
-			screens.add(NewPhraseFragment(phrase))
-			screens.add(TranslationFragment(phrase, Language.CATALAN, includeContext = true))
+			exercises.add(NewPhraseFragment(phrase))
+			exercises.add(TranslationFragment(phrase, Language.CATALAN, includeContext = true))
 		}
 
 		// another 2 harder translations for 1-3 along with 4 harder translations for 4-5
-		val secondTranslationScreens = mutableSetOf<Fragment>()
+		val secondTranslationExercises = mutableSetOf<Fragment>()
 		for (phrase in phrases.subList(0, 3)) {
-			secondTranslationScreens.add(TranslationFragment(phrase, Language.CATALAN, includeContext = nextBoolean()))
-			secondTranslationScreens.add(TranslationFragment(phrase, Language.ENGLISH, includeContext = nextBoolean()))
+			secondTranslationExercises.add(TranslationFragment(phrase, Language.CATALAN, includeContext = nextBoolean()))
+			secondTranslationExercises.add(TranslationFragment(phrase, Language.ENGLISH, includeContext = nextBoolean()))
 		}
 		for (phrase in phrases.subList(3, 5)) {
 			repeat(2) {
-				secondTranslationScreens.add(TranslationFragment(phrase, Language.CATALAN, includeContext = nextBoolean()))
-				secondTranslationScreens.add(TranslationFragment(phrase, Language.ENGLISH, includeContext = nextBoolean()))
+				secondTranslationExercises.add(TranslationFragment(phrase, Language.CATALAN, includeContext = nextBoolean()))
+				secondTranslationExercises.add(TranslationFragment(phrase, Language.ENGLISH, includeContext = nextBoolean()))
 			}
 		}
-		screens.addAll(secondTranslationScreens.shuffled())
+		exercises.addAll(secondTranslationExercises.shuffled())
 
-		return screens
+		return exercises
 	}
 }
 
 @TypeLabel("wip")
 @JsonClass(generateAdapter = true)
 class WipLevel(override val x: Int, override val y: Int): Level() {
-	override fun getScreens() = listOf<Fragment>()
+	override fun getExercises() = listOf<Fragment>()
 }

@@ -17,8 +17,8 @@ class LearningActivity : AppCompatActivity() {
 		const val LEVEL_INDEX_EXTRA = "LEVEL_INDEX"
 	}
 
-	lateinit var level: Level
-	lateinit var screensIterator: Iterator<Fragment>
+	private lateinit var level: Level
+	private lateinit var exerciseIterator: Iterator<Fragment>
 
 	lateinit var binding: LearningActivityBinding
 
@@ -69,15 +69,15 @@ class LearningActivity : AppCompatActivity() {
 			return
 		}
 
-		val screens = level.getScreens()
-		screensIterator = screens.iterator()
+		val exercises = level.getExercises()
+		exerciseIterator = exercises.iterator()
 
 		binding = DataBindingUtil.setContentView(this, R.layout.learning_activity)
-		binding.learningProgress.max = screens.size
+		binding.learningProgress.max = exercises.size
 		binding.closeButton.setOnClickListener { finishLevel() }
 
 		supportFragmentManager.beginTransaction()
-			.add(binding.learningActivityArea.id, screensIterator.next())
+			.add(binding.learningActivityArea.id, exerciseIterator.next())
 			.commit()
 	}
 
@@ -115,12 +115,12 @@ class LearningActivity : AppCompatActivity() {
 
 
 	fun nextScreen() {
-		if (screensIterator.hasNext()) {
+		if (exerciseIterator.hasNext()) {
 
 			binding.learningProgress.progress++
 
 			supportFragmentManager.beginTransaction()
-				.replace(binding.learningActivityArea.id, screensIterator.next())
+				.replace(binding.learningActivityArea.id, exerciseIterator.next())
 				.commit()
 		}
 
