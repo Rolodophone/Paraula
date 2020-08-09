@@ -2,6 +2,7 @@ package net.rolodophone.paraula.learning
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -61,6 +62,13 @@ class LearningActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 
 		level = levels[intent.getIntExtra(LEVEL_INDEX_EXTRA, -1)]
+
+		if (level is WipLevel) {
+			Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show()
+			finish()
+			return
+		}
+
 		val screens = level.getScreens()
 		screensIterator = screens.iterator()
 
