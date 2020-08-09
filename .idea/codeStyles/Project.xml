@@ -2,6 +2,7 @@
   <code_scheme name="Project" version="173">
     <option name="RIGHT_MARGIN" value="180" />
     <JSON>
+      <option name="KEEP_TRAILING_COMMA" value="true" />
       <option name="OBJECT_WRAPPING" value="1" />
       <option name="ARRAY_WRAPPING" value="1" />
     </JSON>
@@ -11,6 +12,8 @@
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
     <codeStyleSettings language="JSON">
+      <option name="WRAP_LONG_LINES" value="true" />
+      <option name="WRAP_ON_TYPING" value="0" />
       <indentOptions>
         <option name="INDENT_SIZE" value="4" />
         <option name="USE_TAB_CHARACTER" value="true" />

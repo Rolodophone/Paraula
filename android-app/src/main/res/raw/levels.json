@@ -1,11 +1,13 @@
-{"levels": [
-	{"type": "vocab", "x": 196, "y": 42, "phrases": [
-		{"english": "hello",							"catalan": "hola"},
-		{"english": "I'm",								"catalan": "soc"},
-		{"english": "how are you?",						"catalan": "com estàs?"},
-		{"english": "from", 							"catalan": "de"},
-		{"english": "England",							"catalan": "Anglaterra"}
-	]},
-	{"type": "wip", "x": 210, "y": 105},
-	{"type": "wip", "x": 208, "y": 173}
-]}
+{
+	"levels": [
+		{"type": "vocab", "x": 196, "y": 42, "phrases": [
+			{"english": "hello", "catalan": "hola"},
+			{"english": "I'm", "altEnglish": ["I am"], "catalan": "soc"},
+			{"english": "how are you?", "catalan": "com estàs?"},
+			{"english": "from", "catalan": "de"},
+			{"english": "England", "catalan": "Anglaterra"}
+		]},
+		{"type": "wip", "x": 210, "y": 105},
+		{"type": "wip", "x": 208, "y": 173}
+	]
+}
