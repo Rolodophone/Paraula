@@ -1,10 +1,12 @@
 package net.rolodophone.paraula
 
 import android.content.Context
+import android.content.res.Resources
 import android.util.TypedValue
+import androidx.annotation.RawRes
 import androidx.fragment.app.*
 import androidx.lifecycle.*
-import net.rolodophone.paraula.learning.Level
+import net.rolodophone.paraula.learning.*
 import java.io.*
 import kotlin.math.roundToInt
 
@@ -42,7 +44,9 @@ inline fun <reified T : ViewModel> FragmentActivity.getViewModel(noinline creato
 /**
  * Reads an InputStream into a string
  */
-fun readTextFile(inputStream: InputStream): String {
+fun readTextFile(resources: Resources, @RawRes file: Int): String {
+
+	val inputStream = resources.openRawResource(file)
 
 	val outputStream = ByteArrayOutputStream()
 	val buf = ByteArray(1024)
@@ -62,7 +66,7 @@ fun readTextFile(inputStream: InputStream): String {
 	return outputStream.toString()
 }
 
+
 lateinit var levels: List<Level>
-lateinit var englishExamples: Set<String>
-lateinit var catalanExamples: Set<String>
-fun randomExample(phrase: String) = englishExamples.plus(catalanExamples).filter { phrase in it }.random()
+lateinit var examples: Examples
+fun randomExample(phrase: String) = examples.english.plus(examples.catalan).filter { phrase in it }.random()

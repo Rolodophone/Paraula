@@ -1,0 +1,17 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Examples",
+	"description": "Object containing an array of example phrases for Paraula",
+	"type": "object",
+	"properties": {
+		"english": {
+			"type": "array",
+			"items": {"type": "string"}
+		},
+		"catalan": {
+			"type": "array",
+			"items": {"type": "string"}
+		}
+	},
+	"additionalProperties": false
+}

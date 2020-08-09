@@ -14,7 +14,7 @@ class TranslationFragment(private val phrase: Phrase, private val displayPhrase:
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val root = inflater.inflate(R.layout.learning_translation_fragment, container, false) as ViewGroup
 
-		val textView = inflater.inflate(R.layout.learning_translation_text, root, false) as TextView
+		val textView = inflater.inflate(R.layout.learning_translation_fragment_text, root, false) as TextView
 
 		val (contextBefore, contextAfter) = example.split(displayPhrase, limit = 2)
 
@@ -28,7 +28,7 @@ class TranslationFragment(private val phrase: Phrase, private val displayPhrase:
 		root.addView(textView)
 
 
-		val editText = inflater.inflate(R.layout.learning_translation_text_input, container, false) as EditText
+		val editText = inflater.inflate(R.layout.learning_translation_fragment_input, container, false) as EditText
 
 		editText.setOnEditorActionListener { view: TextView, _, _ ->
 			submitTranslation(view.text.toString())

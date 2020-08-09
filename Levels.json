@@ -1,0 +1,46 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Levels",
+	"description": "Object containing a list of levels for Paraula",
+	"type": "object",
+	"properties": {
+		"levels": {
+			"type": "array",
+			"items": {
+				"oneOf": [
+					{
+						"type": "object",
+						"properties": {
+							"type": {"enum": ["wip"]},
+							"x": {"type": "integer"},
+							"y": {"type": "integer"}
+						},
+						"required": ["type", "x", "y"],
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"type": {"enum": ["vocab"]},
+							"x": {"type": "integer"},
+							"y": {"type": "integer"},
+							"phrases": {"type": "array", "minItems": 5, "maxItems": 5, "items": {
+								"type": "object",
+								"properties": {
+									"english": {"type": "string"},
+									"catalan": {"type": "string"}
+								},
+								"required": ["english", "catalan"],
+								"additionalProperties": false
+							}}
+						},
+						"required": ["type", "x", "y", "phrases"],
+						"additionalProperties": false
+					}
+				]
+			}
+		}
+	},
+	"required": ["levels"],
+	"additionalProperties": false
+}
