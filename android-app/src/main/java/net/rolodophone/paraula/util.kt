@@ -69,4 +69,5 @@ fun readTextFile(resources: Resources, @RawRes file: Int): String {
 
 lateinit var levels: List<Level>
 lateinit var examples: Examples
+lateinit var words: List<Word>
 fun randomExample(phrase: Phrase, language: Language) = examples.english.plus(examples.catalan).filter { phrase.get(language) in it }.random()

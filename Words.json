@@ -1,0 +1,38 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Words",
+	"description": "Object containing a list of words for Paraula",
+	"type": "object",
+	"properties": {
+		"words": {
+			"type": "array",
+			"items": {
+				"oneOf": [
+					{
+						"type": "object",
+						"properties": {
+							"type": {"enum": ["noun"]},
+							"catalan": {"type": "string"},
+							"gender": {"enum": ["masculine", "feminine"]},
+							"english": {"type": "string"}
+						},
+						"required": ["type", "catalan", "gender", "english"],
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"type": {"enum": ["verb"]},
+							"catalan": {"type": "string"},
+							"english": {"type": "string"}
+						},
+						"required": ["type", "catalan", "english"],
+						"additionalProperties": false
+					}
+				]
+			}
+		}
+	},
+	"required": ["words"],
+	"additionalProperties": false
+}

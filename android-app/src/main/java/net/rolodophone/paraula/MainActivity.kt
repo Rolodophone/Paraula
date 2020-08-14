@@ -19,5 +19,6 @@ class MainActivity : AppCompatActivity() {
 		val moshi = Moshi.Builder().build()
 		examples = ExamplesJsonAdapter(moshi).fromJson(readTextFile(resources, R.raw.examples))!!
 		levels = LevelsJsonAdapter(moshi).fromJson(readTextFile(resources, R.raw.levels))!!.levels
+		words = WordsJsonAdapter(moshi).fromJson(readTextFile(resources, R.raw.words))!!.words
 	}
 }

@@ -34,6 +34,9 @@
                   <Item>
                     <option name="path" value="multiplatform/dev/Levels.json" />
                   </Item>
+                  <Item>
+                    <option name="path" value="Words.json" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>
@@ -49,6 +52,21 @@
                 <list>
                   <Item>
                     <option name="path" value="android-app/src/main/res/raw/levels.json" />
+                  </Item>
+                </list>
+              </option>
+            </SchemaInfo>
+          </value>
+        </entry>
+        <entry key="Words">
+          <value>
+            <SchemaInfo>
+              <option name="name" value="Words" />
+              <option name="relativePathToSchema" value="Words.json" />
+              <option name="patterns">
+                <list>
+                  <Item>
+                    <option name="path" value="android-app/src/main/res/raw/words.json" />
                   </Item>
                 </list>
               </option>

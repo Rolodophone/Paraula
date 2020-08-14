@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.*
 import net.rolodophone.paraula.*
 import net.rolodophone.paraula.databinding.LearningActivityBinding
 import kotlin.random.Random
@@ -14,10 +15,15 @@ import kotlin.random.Random
 class LearningActivity : AppCompatActivity() {
 
 	companion object {
-		const val LEVEL_INDEX_EXTRA = "LEVEL_INDEX"
+		const val LEVEL_INDEX_EXTRA = "LEVEL_INDEX"  // -1 means no level
+		const val SPECIAL_LEVEL_EXTRA = "SPECIAL_LEVEL"
+
+		const val NONE = -1
+		const val ENDLESS = 0
 	}
 
 	private lateinit var level: Level
+	private var specialLevelType: Int = -1
 	private lateinit var exerciseIterator: Iterator<Fragment>
 
 	lateinit var binding: LearningActivityBinding
@@ -61,24 +67,37 @@ class LearningActivity : AppCompatActivity() {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		level = levels[intent.getIntExtra(LEVEL_INDEX_EXTRA, -1)]
-
-		if (level is WipLevel) {
-			Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show()
-			finish()
-			return
-		}
-
-		val exercises = level.getExercises()
-		exerciseIterator = exercises.iterator()
-
 		binding = DataBindingUtil.setContentView(this, R.layout.learning_activity)
-		binding.learningProgress.max = exercises.size
 		binding.closeButton.setOnClickListener { finishLevel() }
 
-		supportFragmentManager.beginTransaction()
-			.add(binding.learningActivityArea.id, exerciseIterator.next())
-			.commit()
+		specialLevelType = intent.getIntExtra(SPECIAL_LEVEL_EXTRA, -1)
+
+		if (specialLevelType == -1) {
+			level = levels[intent.getIntExtra(LEVEL_INDEX_EXTRA, -1)]
+
+			if (level is WipLevel) {
+				Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show()
+				finish()
+				return
+			}
+
+			val exercises = level.getExercises()
+			exerciseIterator = exercises.iterator()
+
+			binding.learningProgress.max = exercises.size
+
+			supportFragmentManager.beginTransaction()
+				.add(binding.learningActivityArea.id, exerciseIterator.next())
+				.commit()
+		}
+
+		else {
+			binding.learningProgress.max = 100
+
+			supportFragmentManager.beginTransaction()
+				.add(binding.learningActivityArea.id, nextEndlessExercise())
+				.commit()
+		}
 	}
 
 
@@ -115,22 +134,55 @@ class LearningActivity : AppCompatActivity() {
 
 
 	fun nextScreen() {
-		if (exerciseIterator.hasNext()) {
+		when (specialLevelType) {
+			NONE -> { // world level
+				if (exerciseIterator.hasNext()) {
 
-			binding.learningProgress.progress++
+					binding.learningProgress.progress++
 
-			supportFragmentManager.beginTransaction()
-				.replace(binding.learningActivityArea.id, exerciseIterator.next())
-				.commit()
+					supportFragmentManager.beginTransaction()
+						.replace(binding.learningActivityArea.id, exerciseIterator.next())
+						.commit()
+				}
+
+				else {
+					finishLevel()
+				}
+			}
+
+			ENDLESS -> {
+				supportFragmentManager.beginTransaction()
+					.replace(binding.learningActivityArea.id, nextEndlessExercise())
+					.commit()
+
+				// flash progress bar
+				GlobalScope.launch {
+					repeat(100) {
+						binding.learningProgress.progress++
+						delay(1L)
+					}
+					delay(1000L)
+					binding.learningProgress.progress = 0
+				}
+			}
 		}
+	}
 
-		else {
-			finishLevel()
+	private fun nextEndlessExercise(): Fragment {
+
+		return when (val word = words.random()) {
+			is Noun -> {
+				GenderFragment(word)
+			}
+
+			is Verb -> {
+				nextEndlessExercise() //TODO temp
+			}
 		}
 	}
 
 
-	fun finishLevel() {
+	private fun finishLevel() {
 		finish()
 	}
 }

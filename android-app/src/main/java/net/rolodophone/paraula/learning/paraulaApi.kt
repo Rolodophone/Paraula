@@ -1,7 +1,7 @@
 package net.rolodophone.paraula.learning
 
 import androidx.fragment.app.Fragment
-import com.squareup.moshi.JsonClass
+import com.squareup.moshi.*
 import dev.zacsweers.moshisealed.annotations.TypeLabel
 import net.rolodophone.paraula.*
 import kotlin.random.Random.Default.nextBoolean
@@ -11,6 +11,9 @@ class Levels(val levels: List<Level>)
 
 @JsonClass(generateAdapter = true)
 class Examples(val english: Set<String>, val catalan: Set<String>)
+
+@JsonClass(generateAdapter = true)
+class Words(val words: List<Word>)
 
 @JsonClass(generateAdapter = true, generator = "sealed:type")
 sealed class Level {
@@ -128,3 +131,18 @@ class VocabLevel(override val x: Int, override val y: Int, val phrases: List<Phr
 class WipLevel(override val x: Int, override val y: Int): Level() {
 	override fun getExercises() = listOf<Fragment>()
 }
+
+@JsonClass(generateAdapter = true, generator = "sealed:type")
+sealed class Word
+
+@TypeLabel("noun")
+@JsonClass(generateAdapter = true)
+class Noun(val catalan: String, val gender: Gender, val english: String): Word() {
+	enum class Gender {
+		@Json(name = "masculine") MASCULINE, @Json(name = "feminine") FEMININE
+	}
+}
+
+@TypeLabel("verb")
+@JsonClass(generateAdapter = true)
+class Verb(val catalan: String, val english: String): Word()

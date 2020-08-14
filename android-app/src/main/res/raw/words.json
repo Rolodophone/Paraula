@@ -1,0 +1,9 @@
+{
+	"words": [
+		{"type": "noun", "catalan": "aigua", "gender": "feminine", "english": "water"},
+		{"type": "noun", "catalan": "nas", "gender": "masculine", "english": "nose"},
+		{"type": "noun", "catalan": "taula", "gender": "feminine", "english": "table"},
+		{"type": "verb", "catalan": "cantar", "english": "sing"},
+		{"type": "verb", "catalan": "ballar", "english": "dance"}
+	]
+}
