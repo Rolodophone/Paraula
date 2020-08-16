@@ -15,10 +15,18 @@ class MainActivity : AppCompatActivity() {
 
 		log = { Log.i("multiplatform", it) }
 
+
 		// get levels from json
 		val moshi = Moshi.Builder().build()
-		examples = ExamplesJsonAdapter(moshi).fromJson(readTextFile(resources, R.raw.examples))!!
-		levels = LevelsJsonAdapter(moshi).fromJson(readTextFile(resources, R.raw.levels))!!.levels
-		words = WordsJsonAdapter(moshi).fromJson(readTextFile(resources, R.raw.words))!!.words
+		examples = ExamplesJsonAdapter(moshi).fromJson(readFile(resources, R.raw.examples))!!
+		levels = LevelsJsonAdapter(moshi).fromJson(readFile(resources, R.raw.levels))!!.levels
+
+		// for reading the new words json file at runtime
+		newWordsJsonAdapter = NewWordsJsonAdapter(moshi)
+
+		val newWords = newWordsJsonAdapter.fromJson(readFile(resources, R.raw.new_words))!!.newWords
+		val seenNewWords = newWords.take(getIndexOfNextNewWord(this))
+		val wordProbabilities = getWordProbabilities(this)
+		seenWords = seenNewWords.mapIndexed { i, word -> SeenWord(word, wordProbabilities[i]) }.toMutableSet()
 	}
 }

@@ -10,7 +10,8 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
 import net.rolodophone.paraula.*
 import net.rolodophone.paraula.databinding.LearningActivityBinding
-import kotlin.random.Random
+import org.nield.kotlinstatistics.WeightedDice
+import kotlin.random.Random.Default.nextInt
 
 class LearningActivity : AppCompatActivity() {
 
@@ -23,7 +24,7 @@ class LearningActivity : AppCompatActivity() {
 	}
 
 	private lateinit var level: Level
-	private var specialLevelType: Int = -1
+	private var specialLevelType: Int = NONE
 	private lateinit var exerciseIterator: Iterator<Fragment>
 
 	lateinit var binding: LearningActivityBinding
@@ -62,6 +63,8 @@ class LearningActivity : AppCompatActivity() {
 		"Studies show that near misses improve retention",
 		"What a fool! Just kidding, you're doing great :-)"
 	)
+
+	private lateinit var currentWord: SeenWord
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -121,7 +124,13 @@ class LearningActivity : AppCompatActivity() {
 		correctMediaPlayer?.seekTo(0)
 		correctMediaPlayer?.start()
 
-		if (Random.nextInt(8) == 0) Snackbar.make(binding.root, correctAnswerStrings.random(), Snackbar.LENGTH_SHORT).show()
+		if (nextInt(8) == 0) Snackbar.make(binding.root, correctAnswerStrings.random(), Snackbar.LENGTH_SHORT).show()
+
+		if (specialLevelType == ENDLESS) {
+			// halve the probability of the word that the user just got correct and save the new probabilities
+			currentWord.probability /= 2
+			setWordProbabilities(this, seenWords.map { it.probability })
+		}
 	}
 
 
@@ -130,6 +139,12 @@ class LearningActivity : AppCompatActivity() {
 		wrongMediaPlayer?.start()
 
 		Snackbar.make(binding.root, wrongAnswerStrings.random(), Snackbar.LENGTH_SHORT).show()
+
+		if (specialLevelType == ENDLESS) {
+			// reset probability of the word that the user just got wrong to half that of new words and save new probabilities
+			currentWord.probability = 0.5
+			setWordProbabilities(this, seenWords.map { it.probability })
+		}
 	}
 
 
@@ -156,6 +171,7 @@ class LearningActivity : AppCompatActivity() {
 					.commit()
 
 				// flash progress bar
+				binding.learningProgress.progress = 0
 				GlobalScope.launch {
 					repeat(100) {
 						binding.learningProgress.progress++
@@ -169,14 +185,29 @@ class LearningActivity : AppCompatActivity() {
 	}
 
 	private fun nextEndlessExercise(): Fragment {
+		if (seenWords.sumByDouble { it.probability } > 1f) { // present a word that's already been seen
+			currentWord = WeightedDice(seenWords.associateBy({it}, {it.probability})).roll()
 
-		return when (val word = words.random()) {
-			is Noun -> {
-				GenderFragment(word)
+			return when (val word = currentWord.word) {
+				is Noun -> when (nextInt(2)) {
+					0 -> GenderFragment(word)
+					else -> TranslationFragment(Phrase(english = word.english, catalan = word.catalan))
+				}
+				is Verb -> TranslationFragment(Phrase(english = word.english, catalan = word.catalan))
 			}
+		}
 
-			is Verb -> {
-				nextEndlessExercise() //TODO temp
+		else { // present a new word
+			val indexOfNextNewWord = getIndexOfNextNewWord(this)
+			val newWord = newWordsJsonAdapter.fromJson(readFile(resources, R.raw.new_words))!!.newWords[indexOfNextNewWord]
+			setIndexOfNextNewWord(this, indexOfNextNewWord + 1)
+
+			currentWord = SeenWord(newWord, 1.0)
+			seenWords.add(currentWord)
+
+			return when (newWord) {
+				is Noun -> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
+				is Verb -> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
 			}
 		}
 	}

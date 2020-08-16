@@ -1,5 +1,7 @@
 {
-	"words": [
+	"newWords": [
+		{"type": "verb", "catalan": "menjar", "english": "eat"},
+		{"type": "noun", "catalan": "teclat", "gender": "masculine", "english": "keyboard"},
 		{"type": "noun", "catalan": "aigua", "gender": "feminine", "english": "water"},
 		{"type": "noun", "catalan": "nas", "gender": "masculine", "english": "nose"},
 		{"type": "noun", "catalan": "taula", "gender": "feminine", "english": "table"},

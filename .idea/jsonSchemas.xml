@@ -68,6 +68,12 @@
                   <Item>
                     <option name="path" value="android-app/src/main/res/raw/words.json" />
                   </Item>
+                  <Item>
+                    <option name="path" value="android-app/src/main/res/raw/newWordsEasy.json" />
+                  </Item>
+                  <Item>
+                    <option name="path" value="android-app/src/main/res/raw/new_words.json" />
+                  </Item>
                 </list>
               </option>
             </SchemaInfo>

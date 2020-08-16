@@ -66,6 +66,8 @@ dependencies {
     kapt "dev.zacsweers.moshisealed:moshi-sealed-codegen:0.2.0"
     implementation "dev.zacsweers.moshisealed:moshi-sealed-annotations:0.2.0"
 
+    implementation "org.nield:kotlin-statistics:1.2.1"
+
     implementation project(":multiplatform")
 
     testImplementation 'junit:junit:4.12'

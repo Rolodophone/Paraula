@@ -7,7 +7,7 @@ import androidx.annotation.RawRes
 import androidx.fragment.app.*
 import androidx.lifecycle.*
 import net.rolodophone.paraula.learning.*
-import java.io.*
+import java.io.FileNotFoundException
 import kotlin.math.roundToInt
 
 /**
@@ -41,33 +41,55 @@ inline fun <reified T : ViewModel> Fragment.getViewModel(noinline creator: () ->
 inline fun <reified T : ViewModel> FragmentActivity.getViewModel(noinline creator: () -> T): T
 		= ViewModelProvider(this, BaseViewModelFactory(creator)).get(T::class.java)
 
-/**
- * Reads an InputStream into a string
- */
-fun readTextFile(resources: Resources, @RawRes file: Int): String {
 
-	val inputStream = resources.openRawResource(file)
-
-	val outputStream = ByteArrayOutputStream()
-	val buf = ByteArray(1024)
-	var len: Int
-
-	try {
-
-		while (inputStream.read(buf).also { len = it } != -1) {
-			outputStream.write(buf, 0, len)
-		}
-
-		outputStream.close()
-		inputStream.close()
+fun readFile(resources: Resources, @RawRes file: Int): String {
+	return resources.openRawResource(file).bufferedReader().use {
+		it.readText()
 	}
-	catch (e: IOException) {}
-
-	return outputStream.toString()
 }
 
 
 lateinit var levels: List<Level>
 lateinit var examples: Examples
-lateinit var words: List<Word>
+lateinit var seenWords: MutableSet<SeenWord>
+
+lateinit var newWordsJsonAdapter: NewWordsJsonAdapter
+
 fun randomExample(phrase: Phrase, language: Language) = examples.english.plus(examples.catalan).filter { phrase.get(language) in it }.random()
+
+fun getIndexOfNextNewWord(context: Context): Int {
+	return try {
+		context.openFileInput("indexOfNextNewWord").bufferedReader().use {
+			it.readText().toInt()
+		}
+	}
+	catch (e: FileNotFoundException) {
+		context.openFileOutput("indexOfNextNewWord", Context.MODE_PRIVATE).use {
+			it.write("0".toByteArray())
+		}
+		0
+	}
+}
+fun setIndexOfNextNewWord(context: Context, value: Int) {
+	context.openFileOutput("indexOfNextNewWord", Context.MODE_PRIVATE).use {
+		it.write(value.toString().toByteArray())
+	}
+}
+
+fun getWordProbabilities(context: Context): List<Double> {
+	return try {
+		context.openFileInput("wordProbabilities").bufferedReader().use { file ->
+			file.readText().split(",").map { it.toDouble() }
+		}
+	} catch (e: FileNotFoundException) {
+		context.openFileOutput("wordProbabilities", Context.MODE_PRIVATE).use {
+			it.write("".toByteArray())
+		}
+		listOf()
+	}
+}
+fun setWordProbabilities(context: Context, value: List<Double>) {
+	context.openFileOutput("wordProbabilities", Context.MODE_PRIVATE).use { file ->
+		file.write(value.joinToString(",") { it.toString() }.toByteArray())
+	}
+}

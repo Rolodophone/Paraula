@@ -13,7 +13,7 @@ class Levels(val levels: List<Level>)
 class Examples(val english: Set<String>, val catalan: Set<String>)
 
 @JsonClass(generateAdapter = true)
-class Words(val words: List<Word>)
+class NewWords(val newWords: List<Word>)
 
 @JsonClass(generateAdapter = true, generator = "sealed:type")
 sealed class Level {
@@ -60,7 +60,11 @@ class Phrase(val english: String, val altEnglish: Set<String>? = null, val catal
 }
 
 enum class Language {
-	ENGLISH, CATALAN
+	ENGLISH, CATALAN;
+
+	companion object {
+		fun random() = if (nextBoolean()) ENGLISH else CATALAN
+	}
 }
 
 @JsonClass(generateAdapter = true)
@@ -134,6 +138,9 @@ class WipLevel(override val x: Int, override val y: Int): Level() {
 
 @JsonClass(generateAdapter = true, generator = "sealed:type")
 sealed class Word
+
+@JsonClass(generateAdapter = true)
+class SeenWord(val word: Word, var probability: Double)
 
 @TypeLabel("noun")
 @JsonClass(generateAdapter = true)

@@ -9,7 +9,7 @@ import androidx.core.text.*
 import androidx.fragment.app.Fragment
 import net.rolodophone.paraula.*
 
-class TranslationFragment(private val phrase: Phrase, private val language: Language, includeContext: Boolean = false) : Fragment() {
+class TranslationFragment(private val phrase: Phrase, private val language: Language = Language.random(), includeContext: Boolean = false) : Fragment() {
 
 	private val example = if (includeContext) randomExample(phrase, language) else phrase.get(language)
 
