@@ -6,6 +6,7 @@ import android.util.TypedValue
 import androidx.annotation.RawRes
 import androidx.fragment.app.*
 import androidx.lifecycle.*
+import com.squareup.moshi.Moshi
 import net.rolodophone.paraula.learning.*
 import java.io.FileNotFoundException
 import kotlin.math.roundToInt
@@ -51,30 +52,10 @@ fun readFile(resources: Resources, @RawRes file: Int): String {
 
 lateinit var levels: List<Level>
 lateinit var examples: Examples
-lateinit var seenWords: MutableSet<SeenWord>
-
-lateinit var newWordsJsonAdapter: NewWordsJsonAdapter
+lateinit var moshi: Moshi
 
 fun randomExample(phrase: Phrase, language: Language) = examples.english.plus(examples.catalan).filter { phrase.get(language) in it }.random()
 
-fun getIndexOfNextNewWord(context: Context): Int {
-	return try {
-		context.openFileInput("indexOfNextNewWord").bufferedReader().use {
-			it.readText().toInt()
-		}
-	}
-	catch (e: FileNotFoundException) {
-		context.openFileOutput("indexOfNextNewWord", Context.MODE_PRIVATE).use {
-			it.write("0".toByteArray())
-		}
-		0
-	}
-}
-fun setIndexOfNextNewWord(context: Context, value: Int) {
-	context.openFileOutput("indexOfNextNewWord", Context.MODE_PRIVATE).use {
-		it.write(value.toString().toByteArray())
-	}
-}
 
 fun getWordProbabilities(context: Context): List<Double> {
 	return try {

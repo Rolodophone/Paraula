@@ -33,4 +33,9 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="LearningMainText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
 </resources>

@@ -1,5 +1,7 @@
 package net.rolodophone.paraula.learning
 
+import android.app.AlertDialog
+import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Toast
@@ -21,6 +23,9 @@ class LearningActivity : AppCompatActivity() {
 
 		const val NONE = -1
 		const val ENDLESS = 0
+
+		const val INDEX_OF_NEXT_NEW_WORD = "INDEX_OF_NEXT_NEW_WORD"
+		const val ENDLESS_COMPLETED_DIALOG_SEEN = "ENDLESS_COMPLETED_DIALOG_SEEN"
 	}
 
 	private lateinit var level: Level
@@ -66,6 +71,11 @@ class LearningActivity : AppCompatActivity() {
 
 	private lateinit var currentWord: SeenWord
 
+	private var endlessCompleted = false
+
+	private lateinit var newWordsJsonAdapter: NewWordsJsonAdapter
+	private lateinit var seenWords: MutableSet<SeenWord>
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -96,6 +106,14 @@ class LearningActivity : AppCompatActivity() {
 
 		else {
 			binding.learningProgress.max = 100
+
+			// for reading the new words json file at runtime
+			newWordsJsonAdapter = NewWordsJsonAdapter(moshi)
+
+			val newWords = newWordsJsonAdapter.fromJson(readFile(resources, R.raw.new_words))!!.newWords
+			val seenNewWords = newWords.take(getPreferences(Context.MODE_PRIVATE).getInt(INDEX_OF_NEXT_NEW_WORD, 0))
+			val wordProbabilities = getWordProbabilities(this)
+			seenWords = seenNewWords.mapIndexed { i, word -> SeenWord(word, wordProbabilities[i]) }.toMutableSet()
 
 			supportFragmentManager.beginTransaction()
 				.add(binding.learningActivityArea.id, nextEndlessExercise())
@@ -185,7 +203,7 @@ class LearningActivity : AppCompatActivity() {
 	}
 
 	private fun nextEndlessExercise(): Fragment {
-		if (seenWords.sumByDouble { it.probability } > 1f) { // present a word that's already been seen
+		if (seenWords.sumByDouble { it.probability } > 1f || endlessCompleted) { // present a word that's already been seen
 			currentWord = WeightedDice(seenWords.associateBy({it}, {it.probability})).roll()
 
 			return when (val word = currentWord.word) {
@@ -198,16 +216,42 @@ class LearningActivity : AppCompatActivity() {
 		}
 
 		else { // present a new word
-			val indexOfNextNewWord = getIndexOfNextNewWord(this)
-			val newWord = newWordsJsonAdapter.fromJson(readFile(resources, R.raw.new_words))!!.newWords[indexOfNextNewWord]
-			setIndexOfNextNewWord(this, indexOfNextNewWord + 1)
+			val indexOfNextNewWord = getPreferences(Context.MODE_PRIVATE).getInt(INDEX_OF_NEXT_NEW_WORD, 0)
+			val newWords = newWordsJsonAdapter.fromJson(readFile(resources, R.raw.new_words))!!.newWords
 
-			currentWord = SeenWord(newWord, 1.0)
-			seenWords.add(currentWord)
+			if (indexOfNextNewWord < newWords.size) {
+				val newWord = newWords[indexOfNextNewWord]
 
-			return when (newWord) {
-				is Noun -> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
-				is Verb -> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
+				with(getPreferences(Context.MODE_PRIVATE).edit()) {
+					putInt(INDEX_OF_NEXT_NEW_WORD, indexOfNextNewWord + 1)
+					putBoolean(ENDLESS_COMPLETED_DIALOG_SEEN, false) // if this has been set to true, reset to false because I must've added more new words
+					apply()
+				}
+
+				currentWord = SeenWord(newWord, 1.0)
+				seenWords.add(currentWord)
+
+				return when (newWord) {
+					is Noun -> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
+					is Verb -> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
+				}
+			}
+			else {
+				// completed every single word (rare)
+				if (!getPreferences(Context.MODE_PRIVATE).getBoolean(ENDLESS_COMPLETED_DIALOG_SEEN, false)) { // only show dialog if it's not been seen yet
+					AlertDialog.Builder(this)
+						.setTitle("Endless mode completed")
+						.setMessage("Congratulations, you have completed endless mode! There are no new words left, but you can still keep practising the words you've seen.")
+						.setPositiveButton(android.R.string.ok, null)
+						.show()
+
+					with(getPreferences(Context.MODE_PRIVATE).edit()) {
+						putBoolean(ENDLESS_COMPLETED_DIALOG_SEEN, true)
+						apply()
+					}
+				}
+				endlessCompleted = true
+				return nextEndlessExercise()
 			}
 		}
 	}
