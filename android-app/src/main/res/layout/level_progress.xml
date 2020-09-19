@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:visibility="invisible">
+
+    <TextView
+        android:id="@+id/level_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@android:color/primary_text_light_nodisable"
+        android:textSize="28sp"
+        tools:text="99" />
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
         android:id="@+id/progress_bar"
@@ -15,13 +26,4 @@
         app:cpb_progressbar_color="@color/colorPrimary"
         app:cpb_progressbar_width="10dp"
         app:cpb_round_border="true" />
-
-    <TextView
-        android:id="@+id/level_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@android:color/primary_text_light_nodisable"
-        android:textSize="28sp"
-        tools:text="99" />
 </FrameLayout>
