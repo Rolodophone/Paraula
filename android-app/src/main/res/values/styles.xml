@@ -28,14 +28,24 @@
 
     </style>
 
+
     <style name="LearningButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="strokeColor">?attr/colorAccent</item>
         <item name="android:textSize">18sp</item>
     </style>
 
+
     <style name="LearningMainText" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">30sp</item>
+    </style>
+
+
+    <style name="KeyboardButton" parent="LearningButton">
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
     </style>
 
 </resources>
