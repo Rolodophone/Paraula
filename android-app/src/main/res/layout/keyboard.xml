@@ -6,7 +6,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="HardcodedText">
+    tools:ignore="HardcodedText"
+    android:theme="@style/LearningTheme">
 
     <LinearLayout
         android:id="@+id/row1"
@@ -93,22 +94,22 @@
         <Button
             android:id="@+id/button13"
             style="@style/KeyboardButton"
-            tools:text="d" />
+            android:text="d" />
 
         <Button
             android:id="@+id/button14"
             style="@style/KeyboardButton"
-            tools:text="f" />
+            android:text="f" />
 
         <Button
             android:id="@+id/button15"
             style="@style/KeyboardButton"
-            tools:text="g" />
+            android:text="g" />
 
         <Button
             android:id="@+id/button16"
             style="@style/KeyboardButton"
-            tools:text="h" />
+            android:text="h" />
 
         <Button
             android:id="@+id/button17"
@@ -145,9 +146,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1.5"
             android:layout_margin="2dp"
-            app:cardBackgroundColor="?attr/backgroundColor"
+            app:cardBackgroundColor="@color/colorAccent"
             app:cardForegroundColor="@android:color/transparent"
-            app:strokeColor="?attr/colorPrimary"
+            app:strokeColor="@android:color/white"
             app:strokeWidth="1dp" >
 
             <ImageView
@@ -200,9 +201,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1.5"
             android:layout_margin="2dp"
-            app:cardBackgroundColor="?attr/backgroundColor"
+            app:cardBackgroundColor="@color/colorAccent"
             app:cardForegroundColor="@android:color/transparent"
-            app:strokeColor="?attr/colorPrimary"
+            app:strokeColor="@android:color/white"
             app:strokeWidth="1dp" >
 
             <ImageView
@@ -228,7 +229,8 @@
         <Button
             android:id="@+id/space"
             style="@style/KeyboardButton"
-            android:layout_weight="6"/>
+            android:layout_weight="6"
+            android:text=" " />
 
         <Space
             android:layout_width="wrap_content"

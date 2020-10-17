@@ -28,7 +28,7 @@
             android:supportsPictureInPicture="false" tools:targetApi="n"
             android:parentActivityName=".MainActivity"
             android:theme="@style/LearningTheme"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
     </application>
 

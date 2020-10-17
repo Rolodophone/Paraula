@@ -4,7 +4,8 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.*
-import android.widget.*
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import androidx.core.text.*
 import androidx.fragment.app.Fragment
 import net.rolodophone.paraula.*
@@ -16,7 +17,6 @@ class TranslationFragment(private val phrase: Phrase, private val language: Lang
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val root = inflater.inflate(R.layout.learning_translation_fragment, container, false) as ViewGroup
 
-		val textView = inflater.inflate(R.layout.learning_translation_fragment_text, root, false) as TextView
 
 		val (contextBefore, contextAfter) = example.split(phrase.get(language), limit = 2)
 
@@ -25,19 +25,22 @@ class TranslationFragment(private val phrase: Phrase, private val language: Lang
 			.bold { color(Color.WHITE) { append(phrase.get(language)) } }
 			.append(contextAfter)
 
-		textView.text = newText
-
-		root.addView(textView)
+		root.findViewById<TextView>(R.id.translationText).text = newText
 
 
-		val editText = inflater.inflate(R.layout.learning_translation_fragment_input, container, false) as EditText
+		val editText = root.findViewById<TextView>(R.id.translationTextInput)
 
 		editText.setOnEditorActionListener { view: TextView, _, _ ->
 			submitTranslation(view.text.toString())
 			true
 		}
 
-		root.addView(editText)
+		editText.showSoftInputOnFocus = false
+
+		val ic = editText.onCreateInputConnection(EditorInfo())
+		root.findViewById<Keyboard>(R.id.keyboard).inputConnection = ic
+
+		editText.requestFocus()
 
 		return root
 	}
