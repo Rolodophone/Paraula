@@ -1,6 +1,7 @@
 package net.rolodophone.paraula.learning
 
 import android.content.Context
+import android.os.*
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.*
@@ -35,7 +36,14 @@ class Keyboard @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 		val inputConnection = inputConnection ?: return super.onTouchEvent(event)
 
 		//vibrate
-		performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
+		val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+		if (Build.VERSION.SDK_INT >= 26) {
+			vibrator.vibrate(VibrationEffect.createOneShot(10, VibrationEffect.DEFAULT_AMPLITUDE))
+		}
+		else {
+			@Suppress("DEPRECATION")
+			vibrator.vibrate(10)
+		}
 
 		if (view is Button) {
 			inputConnection.commitText(view.text, 1)
