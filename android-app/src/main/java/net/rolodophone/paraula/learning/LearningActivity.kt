@@ -54,7 +54,6 @@ class LearningActivity : AppCompatActivity() {
 		"Almost!",
 		"You've got this!",
 		"Mistakes are natural",
-		"Getting stuff wrong is part of the learning process",
 		"Don't worry, you're doing great!",
 		"Oops, try again",
 		"Try again",
@@ -65,8 +64,6 @@ class LearningActivity : AppCompatActivity() {
 		"Give it another shot",
 		"If you can't remember, have a guess",
 		"If there's context, look at it and take a guess",
-		"Studies show that near misses improve retention",
-		"What a fool! Just kidding, you're doing great :-)"
 	)
 
 	private lateinit var currentWord: SeenWord
@@ -142,7 +139,7 @@ class LearningActivity : AppCompatActivity() {
 		correctMediaPlayer?.seekTo(0)
 		correctMediaPlayer?.start()
 
-		if (nextInt(8) == 0) Snackbar.make(binding.root, correctAnswerStrings.random(), Snackbar.LENGTH_SHORT).show()
+		if (nextInt(8) == 0) Snackbar.make(binding.root, correctAnswerStrings.random(), Snackbar.LENGTH_SHORT).setAnchorView(binding.learningActivityArea).show()
 
 		if (specialLevelType == ENDLESS) {
 			// halve the probability of the word that the user just got correct and save the new probabilities
@@ -156,7 +153,7 @@ class LearningActivity : AppCompatActivity() {
 		wrongMediaPlayer?.seekTo(0)
 		wrongMediaPlayer?.start()
 
-		Snackbar.make(binding.root, wrongAnswerStrings.random(), Snackbar.LENGTH_SHORT).show()
+		if (nextInt(4) == 0) Snackbar.make(binding.root, wrongAnswerStrings.random(), Snackbar.LENGTH_SHORT).setAnchorView(binding.learningActivityArea).show()
 
 		if (specialLevelType == ENDLESS) {
 			// reset probability of the word that the user just got wrong to half that of new words and save new probabilities
