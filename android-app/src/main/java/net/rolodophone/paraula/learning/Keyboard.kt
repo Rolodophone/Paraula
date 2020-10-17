@@ -4,7 +4,7 @@ import android.content.Context
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.*
-import android.view.inputmethod.InputConnection
+import android.view.inputmethod.*
 import android.widget.*
 import androidx.core.view.children
 import com.google.android.material.card.MaterialCardView
@@ -43,30 +43,35 @@ class Keyboard @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
 		else if (view is MaterialCardView) {
 
-			if (view.id == R.id.shift_button) {
+			when (view.id) {
 
-				for (child in buttonViews) {
-					if (child is Button) {
+				R.id.shift_button -> {
+					for (child in buttonViews) {
+						if (child is Button) {
 
-						child.text = if (shiftIsPressed) {
-							child.text.toString().toLowerCase(Locale.getDefault())
-						} else {
-							child.text.toString().toUpperCase(Locale.getDefault())
+							child.text = if (shiftIsPressed) {
+								child.text.toString().toLowerCase(Locale.getDefault())
+							} else {
+								child.text.toString().toUpperCase(Locale.getDefault())
+							}
 						}
+					}
+
+					shiftIsPressed = !shiftIsPressed
+				}
+
+				R.id.backspace -> {
+					if (TextUtils.isEmpty(inputConnection.getSelectedText(0))) {
+						// no text selected so delete previous char
+						inputConnection.deleteSurroundingText(1, 0)
+					} else {
+						// replace selected text with empty string
+						inputConnection.commitText("", 1)
 					}
 				}
 
-				shiftIsPressed = !shiftIsPressed
-			}
-
-			else if (view.id == R.id.backspace) {
-				if (TextUtils.isEmpty(inputConnection.getSelectedText(0))) {
-					// no text selected so delete previous char
-					inputConnection.deleteSurroundingText(1, 0)
-				}
-				else {
-					// replace selected text with empty string
-					inputConnection.commitText("", 1)
+				R.id.submit_button -> {
+					inputConnection.performEditorAction(EditorInfo.IME_ACTION_DONE)
 				}
 			}
 		}

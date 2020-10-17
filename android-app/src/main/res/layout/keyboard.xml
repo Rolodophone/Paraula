@@ -221,10 +221,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/more_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_margin="2dp"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardForegroundColor="@android:color/transparent"
+            app:strokeColor="@android:color/white"
+            app:strokeWidth="1dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="backspace"
+                app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <Button
             android:id="@+id/space"
@@ -232,10 +247,25 @@
             android:layout_weight="6"
             android:text=" " />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"/>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/submit_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_margin="2dp"
+            app:cardBackgroundColor="@color/colorAccent"
+            app:cardForegroundColor="@android:color/transparent"
+            app:strokeColor="@android:color/white"
+            app:strokeWidth="1dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="backspace"
+                app:srcCompat="@drawable/ic_baseline_done_24" />
+
+        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
