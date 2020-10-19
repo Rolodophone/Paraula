@@ -19,53 +19,53 @@
         <Button
             android:id="@+id/button1"
             style="@style/KeyboardButton"
-            android:text="q" />
+            tools:text="q" />
 
         <Button
             android:id="@+id/button2"
             style="@style/KeyboardButton"
-            android:text="w" />
+            tools:text="w" />
 
         <Button
             android:id="@+id/button3"
             style="@style/KeyboardButton"
-            android:text="e" />
+            tools:text="e" />
 
         <Button
             android:id="@+id/button4"
             style="@style/KeyboardButton"
-            android:text="r" />
+            tools:text="r" />
 
         <Button
             android:id="@+id/button5"
             style="@style/KeyboardButton"
-            android:text="t" />
+            tools:text="t" />
 
         <Button
             android:id="@+id/button6"
             style="@style/KeyboardButton"
-            android:text="y" />
+            tools:text="y" />
 
         <Button
             android:id="@+id/button7"
             style="@style/KeyboardButton"
-            android:text="u" />
+            tools:text="u" />
 
         <Button
             android:id="@+id/button8"
             style="@style/KeyboardButton"
-            android:text="i" />
+            tools:text="i" />
 
         <Button
             android:id="@+id/button9"
             style="@style/KeyboardButton"
-            android:text="o" />
+            tools:text="o" />
 
         <Button
             android:id="@+id/button10"
             style="@style/KeyboardButton"
             android:insetTop="0dp"
-            android:text="p" />
+            tools:text="p" />
 
     </LinearLayout>
 
@@ -84,47 +84,47 @@
         <Button
             android:id="@+id/button11"
             style="@style/KeyboardButton"
-            android:text="a" />
+            tools:text="a" />
 
         <Button
             android:id="@+id/button12"
             style="@style/KeyboardButton"
-            android:text="s" />
+            tools:text="s" />
 
         <Button
             android:id="@+id/button13"
             style="@style/KeyboardButton"
-            android:text="d" />
+            tools:text="d" />
 
         <Button
             android:id="@+id/button14"
             style="@style/KeyboardButton"
-            android:text="f" />
+            tools:text="f" />
 
         <Button
             android:id="@+id/button15"
             style="@style/KeyboardButton"
-            android:text="g" />
+            tools:text="g" />
 
         <Button
             android:id="@+id/button16"
             style="@style/KeyboardButton"
-            android:text="h" />
+            tools:text="h" />
 
         <Button
             android:id="@+id/button17"
             style="@style/KeyboardButton"
-            android:text="j" />
+            tools:text="j" />
 
         <Button
             android:id="@+id/button18"
             style="@style/KeyboardButton"
-            android:text="k" />
+            tools:text="k" />
 
         <Button
             android:id="@+id/button19"
             style="@style/KeyboardButton"
-            android:text="l" />
+            tools:text="l" />
 
         <Space
             android:layout_width="wrap_content"
@@ -149,7 +149,8 @@
             app:cardBackgroundColor="@color/colorAccent"
             app:cardForegroundColor="@android:color/transparent"
             app:strokeColor="@android:color/white"
-            app:strokeWidth="1dp" >
+            app:strokeWidth="1dp"
+            app:cardElevation="0dp">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -163,37 +164,37 @@
         <Button
             android:id="@+id/button21"
             style="@style/KeyboardButton"
-            android:text="z" />
+            tools:text="z" />
 
         <Button
             android:id="@+id/button22"
             style="@style/KeyboardButton"
-            android:text="x" />
+            tools:text="x" />
 
         <Button
             android:id="@+id/button23"
             style="@style/KeyboardButton"
-            android:text="c" />
+            tools:text="c" />
 
         <Button
             android:id="@+id/button24"
             style="@style/KeyboardButton"
-            android:text="v" />
+            tools:text="v" />
 
         <Button
             android:id="@+id/button25"
             style="@style/KeyboardButton"
-            android:text="b" />
+            tools:text="b" />
 
         <Button
             android:id="@+id/button26"
             style="@style/KeyboardButton"
-            android:text="n" />
+            tools:text="n" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button27"
             style="@style/KeyboardButton"
-            android:text="m" />
+            tools:text="m" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/backspace"
@@ -204,48 +205,38 @@
             app:cardBackgroundColor="@color/colorAccent"
             app:cardForegroundColor="@android:color/transparent"
             app:strokeColor="@android:color/white"
-            app:strokeWidth="1dp" >
+            app:strokeWidth="1dp"
+            app:cardElevation="0dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 app:srcCompat="@drawable/ic_outline_backspace_24"
-                android:contentDescription="backspace" />
+                android:contentDescription="backspace"/>
 
         </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/row4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="2dp">
 
-        <com.google.android.material.card.MaterialCardView
+        <Button
             android:id="@+id/more_button"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            style="@style/KeyboardButton"
             android:layout_weight="2"
-            android:layout_margin="2dp"
-            app:cardBackgroundColor="@color/colorAccent"
-            app:cardForegroundColor="@android:color/transparent"
-            app:strokeColor="@android:color/white"
-            app:strokeWidth="1dp" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="backspace"
-                app:srcCompat="@drawable/ic_baseline_more_horiz_24" />
-
-        </com.google.android.material.card.MaterialCardView>
+            android:text="\?àí" />
 
         <Button
             android:id="@+id/space"
             style="@style/KeyboardButton"
             android:layout_weight="6"
-            android:text=" " />
+            tools:text=" " />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/submit_button"
@@ -256,7 +247,8 @@
             app:cardBackgroundColor="@color/colorAccent"
             app:cardForegroundColor="@android:color/transparent"
             app:strokeColor="@android:color/white"
-            app:strokeWidth="1dp" >
+            app:strokeWidth="1dp"
+            app:cardElevation="0dp">
 
             <ImageView
                 android:layout_width="wrap_content"
