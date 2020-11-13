@@ -34,3 +34,27 @@ class Noun(override val catalan: String, val gender: Gender, override val englis
 class Verb(override val catalan: String, override val english: String): Word() {
 	override val info = "v."
 }
+
+@TypeLabel("stressed_pronoun")
+@JsonClass(generateAdapter = true)
+class StressedPronoun(override val catalan: String, override val english: String, private val catalanFormat: String, private val englishFormat: String): Word() {
+	override val info = "pron."
+
+	fun getCatalanExample(seenWords: MutableSet<SeenWord>): String {
+		val example = catalanFormat
+		
+		example.replace("<noun>", seenWords.filter { it.word is Noun }.random().word.catalan)
+		example.replace("<verb>", seenWords.filter { it.word is Verb }.random().word.catalan)
+		
+		return example
+	}
+
+	fun getEnglishExample(seenWords: MutableSet<SeenWord>): String {
+		val example = englishFormat
+
+		example.replace("<noun>", seenWords.filter { it.word is Noun }.random().word.english)
+		example.replace("<verb>", seenWords.filter { it.word is Verb }.random().word.english)
+
+		return example
+	}
+}

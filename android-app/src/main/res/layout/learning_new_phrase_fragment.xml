@@ -9,6 +9,18 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/catalan_example"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/english_synonym_words"
+            tools:text='"Example in Catalan"' />
+
+        <TextView
             android:id="@+id/catalan_synonym_words"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,12 +47,12 @@
             android:id="@+id/link_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:contentDescription="@string/word_link_text"
             app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39"
             app:srcCompat="@drawable/ic_baseline_link_24" />
 
         <TextView

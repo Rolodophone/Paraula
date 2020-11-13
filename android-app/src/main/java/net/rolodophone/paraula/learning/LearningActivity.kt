@@ -82,7 +82,7 @@ class LearningActivity : AppCompatActivity() {
 
 		specialLevelType = intent.getIntExtra(SPECIAL_LEVEL_EXTRA, -1)
 
-		if (specialLevelType == -1) {
+		if (specialLevelType == NONE) {
 			level = levels[intent.getIntExtra(LEVEL_INDEX_EXTRA, -1)]
 
 			if (level is WipLevel) {
@@ -209,6 +209,7 @@ class LearningActivity : AppCompatActivity() {
 					else -> TranslationFragment(Phrase(english = word.english, catalan = word.catalan))
 				}
 				is Verb -> TranslationFragment(Phrase(english = word.english, catalan = word.catalan))
+				is StressedPronoun -> TranslationFragment(Phrase(english = word.getEnglishExample(seenWords), catalan = word.getCatalanExample(seenWords)))
 			}
 		}
 
@@ -229,8 +230,9 @@ class LearningActivity : AppCompatActivity() {
 				seenWords.add(currentWord)
 
 				return when (newWord) {
-					is Noun -> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
-					is Verb -> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
+					is Noun 	-> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
+					is Verb 	-> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
+					is StressedPronoun 	-> //TODO
 				}
 			}
 			else {
