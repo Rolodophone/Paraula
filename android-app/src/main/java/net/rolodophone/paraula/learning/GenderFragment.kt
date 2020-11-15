@@ -18,7 +18,7 @@ class GenderFragment(private val noun: Noun): Fragment() {
 		binding.mascButton.setOnClickListener {
 			val activity = requireActivity() as LearningActivity
 
-			if (noun.gender == Noun.Gender.MASCULINE) {
+			if (noun.gender == Gender.MASCULINE) {
 				activity.onCorrect()
 				activity.nextScreen()
 			}
@@ -28,7 +28,7 @@ class GenderFragment(private val noun: Noun): Fragment() {
 		binding.femButton.setOnClickListener {
 			val activity = requireActivity() as LearningActivity
 
-			if (noun.gender == Noun.Gender.FEMININE) {
+			if (noun.gender == Gender.FEMININE) {
 				activity.onCorrect()
 				activity.nextScreen()
 			}

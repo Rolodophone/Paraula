@@ -209,7 +209,7 @@ class LearningActivity : AppCompatActivity() {
 					else -> TranslationFragment(Phrase(english = word.english, catalan = word.catalan))
 				}
 				is Verb -> TranslationFragment(Phrase(english = word.english, catalan = word.catalan))
-				is StressedPronoun -> TranslationFragment(Phrase(english = word.getEnglishExample(seenWords), catalan = word.getCatalanExample(seenWords)))
+				is StressedPronoun -> TranslationFragment(Phrase(english = word.english, catalan = word.catalan))
 			}
 		}
 
@@ -232,7 +232,7 @@ class LearningActivity : AppCompatActivity() {
 				return when (newWord) {
 					is Noun 	-> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
 					is Verb 	-> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
-					is StressedPronoun 	-> //TODO
+					is StressedPronoun 	-> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
 				}
 			}
 			else {

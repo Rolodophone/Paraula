@@ -1,11 +1,18 @@
 {
 	"newWords": [
 		{"type": "verb", "catalan": "menjar", "english": "eat"},
-		{"type": "noun", "catalan": "teclat", "gender": "masculine", "english": "keyboard"},
-		{"type": "noun", "catalan": "aigua", "gender": "feminine", "english": "water"},
-		{"type": "noun", "catalan": "nas", "gender": "masculine", "english": "nose"},
-		{"type": "noun", "catalan": "taula", "gender": "feminine", "english": "table"},
+		{"type": "noun", "catalan": "teclat", "gender": "MASCULINE", "english": "keyboard"},
+		{"type": "noun", "catalan": "aigua", "gender": "FEMININE", "english": "water"},
+		{"type": "noun", "catalan": "nas", "gender": "MASCULINE", "english": "nose"},
+		{"type": "noun", "catalan": "taula", "gender": "FEMININE", "english": "table"},
 		{"type": "verb", "catalan": "cantar", "english": "sing"},
-		{"type": "verb", "catalan": "ballar", "english": "dance"}
+		{"type": "verb", "catalan": "ballar", "english": "dance"},
+		{
+			"type": "stressed_pronoun", "catalan": "el",
+			"english": "the",
+			"gender": "MASCULINE",
+			"number": "SINGULAR",
+			"person": "THIRD"
+		}
 	]
 }
