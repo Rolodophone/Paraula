@@ -11,6 +11,7 @@
         android:id="@+id/translationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/primary_text_dark"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/translationTextInput"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +34,7 @@
         tools:ignore="LabelFor"
         android:inputType="text"/>
 
-    <net.rolodophone.paraula.learning.Keyboard
+    <net.rolodophone.paraula.endless.Keyboard
         android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

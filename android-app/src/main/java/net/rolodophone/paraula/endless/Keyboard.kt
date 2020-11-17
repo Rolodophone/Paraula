@@ -1,12 +1,19 @@
-package net.rolodophone.paraula.learning
+package net.rolodophone.paraula.endless
 
 import android.content.Context
-import android.os.*
+import android.os.Build
+import android.os.Handler
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.text.TextUtils
 import android.util.AttributeSet
-import android.view.*
-import android.view.inputmethod.*
-import android.widget.*
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputConnection
+import android.widget.Button
+import android.widget.FrameLayout
 import androidx.core.view.children
 import com.google.android.material.card.MaterialCardView
 import net.rolodophone.paraula.R

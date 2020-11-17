@@ -3,48 +3,75 @@
 	"title": "Words",
 	"description": "Object containing a list of words for Paraula",
 	"type": "object",
-	"definitions": {
-		"word": {
-			"oneOf": [
-				{
-					"type": "object",
-					"properties": {
-						"type": {"enum": ["noun"]},
-						"catalan": {"type": "string"},
-						"gender": {"enum": ["masculine", "feminine"]},
-						"english": {"type": "string"}
-					},
-					"required": ["type", "catalan", "gender", "english"],
-					"additionalProperties": false
-				},
-				{
-					"type": "object",
-					"properties": {
-						"type": {"enum": ["verb"]},
-						"catalan": {"type": "string"},
-						"english": {"type": "string"}
-					},
-					"required": ["type", "catalan", "english"],
-					"additionalProperties": false
-				}
-			]
-		}
-	},
 	"properties": {
-		"seenWords": {
-			"type": "array",
-			"items": {
-				"type": "object",
-				"properties": {
-					"probability": {"type": "number"},
-					"word": {"$ref": "#/definitions/word"}
-				}
-			}
-		},
 		"newWords": {
 			"type": "array",
 			"items": {
-				"$ref": "#/definitions/word"
+				"oneOf": [
+					{
+						"type": "object",
+						"properties": {
+							"type": {"enum": ["NOUN"]},
+							"catalan": {
+								"type": "array",
+								"items": {"type": "string"}
+							},
+							"english": {
+								"type": "array",
+								"items": {"type": "string"}
+							},
+							"gender": {"enum": ["MASCULINE", "FEMININE"]}
+						},
+						"required": ["type", "catalan", "english", "gender"],
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"type": {"enum": ["VERB"]},
+							"catalan": {
+								"type": "array",
+								"items": {"type": "string"}
+							},
+							"english": {
+								"type": "array",
+								"items": {"type": "string"}
+							}
+						},
+						"required": ["type", "catalan", "english"],
+						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"type": {"enum": ["STRONG_PRONOUN"]},
+							"catalan": {
+								"type": "array",
+								"items": {"type": "string"}
+							},
+							"english": {
+								"type": "array",
+								"items": {"type": "string"}
+							},
+							"person": {"enum": ["FIRST", "SECOND", "THIRD"]},
+							"number": {"enum": ["SINGULAR", "PLURAL"]},
+							"gender": {
+								"oneOf": [
+									{"enum": ["MASCULINE", "FEMININE"]},
+									{"type": "null"}
+								]
+							},
+							"formality": {
+								"oneOf": [
+									{"enum": ["INFORMAL", "FORMAL", "RESPECTFUL"]},
+									{"type": "null"}
+								]
+							}
+						},
+						"required": ["type", "catalan", "english", "person", "number", "gender", "formality"],
+						"additionalProperties": false
+					}
+				]
 			}
 		}
 	},

@@ -1,18 +1,20 @@
 {
 	"newWords": [
-		{"type": "verb", "catalan": "menjar", "english": "eat"},
-		{"type": "noun", "catalan": "teclat", "gender": "MASCULINE", "english": "keyboard"},
-		{"type": "noun", "catalan": "aigua", "gender": "FEMININE", "english": "water"},
-		{"type": "noun", "catalan": "nas", "gender": "MASCULINE", "english": "nose"},
-		{"type": "noun", "catalan": "taula", "gender": "FEMININE", "english": "table"},
-		{"type": "verb", "catalan": "cantar", "english": "sing"},
-		{"type": "verb", "catalan": "ballar", "english": "dance"},
+		{"type": "VERB", "catalan": ["menjar"], "english": ["eat"]},
+		{"type": "NOUN", "catalan": ["teclat"], "gender": "MASCULINE", "english": ["keyboard"]},
+		{"type": "NOUN", "catalan": ["aigua"], "gender": "FEMININE", "english": ["water"]},
+		{"type": "NOUN", "catalan": ["nas"], "gender": "MASCULINE", "english": ["nose"]},
+		{"type": "NOUN", "catalan": ["taula"], "gender": "FEMININE", "english": ["table"]},
+		{"type": "VERB", "catalan": ["cantar"], "english": ["sing"]},
+		{"type": "VERB", "catalan": ["ballar"], "english": ["dance"]},
 		{
-			"type": "stressed_pronoun", "catalan": "el",
-			"english": "the",
+			"type": "STRONG_PRONOUN",
+			"catalan": ["el"],
+			"english": ["the"],
 			"gender": "MASCULINE",
 			"number": "SINGULAR",
-			"person": "THIRD"
+			"person": "THIRD",
+			"formality": null
 		}
 	]
 }

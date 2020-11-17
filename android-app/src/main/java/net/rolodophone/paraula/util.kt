@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
 import androidx.annotation.RawRes
-import androidx.fragment.app.*
-import androidx.lifecycle.*
-import com.squareup.moshi.Moshi
-import net.rolodophone.paraula.learning.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import java.io.FileNotFoundException
 import kotlin.math.roundToInt
 
@@ -48,13 +48,6 @@ fun readFile(resources: Resources, @RawRes file: Int): String {
 		it.readText()
 	}
 }
-
-
-lateinit var levels: List<Level>
-lateinit var examples: Examples
-lateinit var moshi: Moshi
-
-fun randomExample(phrase: Phrase, language: Language) = examples.english.plus(examples.catalan).filter { phrase.get(language) in it }.random()
 
 
 fun getWordProbabilities(context: Context): List<Double> {

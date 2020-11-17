@@ -1,32 +1,22 @@
-package net.rolodophone.paraula.learning
+package net.rolodophone.paraula.endless
 
-import android.graphics.Color
 import android.os.Bundle
-import android.text.SpannableStringBuilder
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import androidx.core.text.*
 import androidx.fragment.app.Fragment
-import net.rolodophone.paraula.*
+import net.rolodophone.paraula.R
 
-class TranslationFragment(private val phrase: Phrase, private val language: Language = Language.random(), includeContext: Boolean = false) : Fragment() {
+class TranslationFragment(private val word: Word) : Fragment() {
 
-	private val example = if (includeContext) randomExample(phrase, language) else phrase.get(language)
+	private val language = Language.values().random()
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val root = inflater.inflate(R.layout.learning_translation_fragment, container, false) as ViewGroup
 
-
-		val (contextBefore, contextAfter) = example.split(phrase.get(language), limit = 2)
-
-		val newText = SpannableStringBuilder()
-			.append(contextBefore)
-			.bold { color(Color.WHITE) { append(phrase.get(language)) } }
-			.append(contextAfter)
-
-		root.findViewById<TextView>(R.id.translationText).text = newText
-
+		root.findViewById<TextView>(R.id.translationText).text = word.get(language).random()
 
 		val editText = root.findViewById<TextView>(R.id.translationTextInput)
 
@@ -49,7 +39,12 @@ class TranslationFragment(private val phrase: Phrase, private val language: Lang
 	private fun submitTranslation(inputtedText: String) {
 		val activity = requireActivity() as LearningActivity
 
-		if (phrase.translate(inputtedText) in phrase.getAll(language)) {
+		val otherLanguage = when (language) {
+			Language.CATALAN -> Language.ENGLISH
+			Language.ENGLISH -> Language.CATALAN
+		}
+
+		if (inputtedText in word.get(otherLanguage)) {
 			activity.onCorrect()
 			activity.nextScreen()
 		}

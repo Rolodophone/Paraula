@@ -1,36 +1,29 @@
-package net.rolodophone.paraula.learning
+package net.rolodophone.paraula.endless
 
 import android.app.AlertDialog
 import android.content.Context
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.*
-import net.rolodophone.paraula.*
+import com.squareup.moshi.Moshi
+import net.rolodophone.paraula.R
 import net.rolodophone.paraula.databinding.LearningActivityBinding
+import net.rolodophone.paraula.getWordProbabilities
+import net.rolodophone.paraula.readFile
+import net.rolodophone.paraula.setWordProbabilities
 import org.nield.kotlinstatistics.WeightedDice
 import kotlin.random.Random.Default.nextInt
 
 class LearningActivity : AppCompatActivity() {
 
 	companion object {
-		const val LEVEL_INDEX_EXTRA = "LEVEL_INDEX"  // -1 means no level
-		const val SPECIAL_LEVEL_EXTRA = "SPECIAL_LEVEL"
-
-		const val NONE = -1
-		const val ENDLESS = 0
-
 		const val INDEX_OF_NEXT_NEW_WORD = "INDEX_OF_NEXT_NEW_WORD"
 		const val ENDLESS_COMPLETED_DIALOG_SEEN = "ENDLESS_COMPLETED_DIALOG_SEEN"
 	}
-
-	private lateinit var level: Level
-	private var specialLevelType: Int = NONE
-	private lateinit var exerciseIterator: Iterator<Fragment>
 
 	lateinit var binding: LearningActivityBinding
 
@@ -80,42 +73,21 @@ class LearningActivity : AppCompatActivity() {
 		binding = DataBindingUtil.setContentView(this, R.layout.learning_activity)
 		binding.closeButton.setOnClickListener { finishLevel() }
 
-		specialLevelType = intent.getIntExtra(SPECIAL_LEVEL_EXTRA, -1)
+		// for reading the new words json file at runtime
+		newWordsJsonAdapter = NewWordsJsonAdapter(Moshi.Builder().build())
 
-		if (specialLevelType == NONE) {
-			level = levels[intent.getIntExtra(LEVEL_INDEX_EXTRA, -1)]
+		val newWords = newWordsJsonAdapter.fromJson(readFile(resources, R.raw.new_words))!!.newWords
+		Log.d("Init word database", "New words: $newWords")
+		val seenNewWords = newWords.take(getPreferences(Context.MODE_PRIVATE).getInt(INDEX_OF_NEXT_NEW_WORD, 0))
+		Log.d("Init word database", "Seen new words: $seenNewWords")
+		val wordProbabilities = getWordProbabilities(this)
+		Log.d("Init word database", "Word probabilities: $wordProbabilities")
+		seenWords = seenNewWords.mapIndexed { i, word -> SeenWord(word, wordProbabilities[i]) }.toMutableSet()
+		Log.d("Init word database", "Seen words: $seenWords")
 
-			if (level is WipLevel) {
-				Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show()
-				finish()
-				return
-			}
-
-			val exercises = level.getExercises()
-			exerciseIterator = exercises.iterator()
-
-			binding.learningProgress.max = exercises.size
-
-			supportFragmentManager.beginTransaction()
-				.add(binding.learningActivityArea.id, exerciseIterator.next())
-				.commit()
-		}
-
-		else {
-			binding.learningProgress.max = 100
-
-			// for reading the new words json file at runtime
-			newWordsJsonAdapter = NewWordsJsonAdapter(moshi)
-
-			val newWords = newWordsJsonAdapter.fromJson(readFile(resources, R.raw.new_words))!!.newWords
-			val seenNewWords = newWords.take(getPreferences(Context.MODE_PRIVATE).getInt(INDEX_OF_NEXT_NEW_WORD, 0))
-			val wordProbabilities = getWordProbabilities(this)
-			seenWords = seenNewWords.mapIndexed { i, word -> SeenWord(word, wordProbabilities[i]) }.toMutableSet()
-
-			supportFragmentManager.beginTransaction()
-				.add(binding.learningActivityArea.id, nextEndlessExercise())
-				.commit()
-		}
+		supportFragmentManager.beginTransaction()
+			.add(binding.learningActivityArea.id, nextEndlessExercise())
+			.commit()
 	}
 
 
@@ -141,11 +113,9 @@ class LearningActivity : AppCompatActivity() {
 
 		if (nextInt(8) == 0) Snackbar.make(binding.root, correctAnswerStrings.random(), Snackbar.LENGTH_SHORT).setAnchorView(binding.learningActivityArea).show()
 
-		if (specialLevelType == ENDLESS) {
-			// halve the probability of the word that the user just got correct and save the new probabilities
-			currentWord.probability /= 2
-			setWordProbabilities(this, seenWords.map { it.probability })
-		}
+		// halve the probability of the word that the user just got correct and save the new probabilities
+		currentWord.probability /= 2
+		setWordProbabilities(this, seenWords.map { it.probability })
 	}
 
 
@@ -155,69 +125,44 @@ class LearningActivity : AppCompatActivity() {
 
 		if (nextInt(4) == 0) Snackbar.make(binding.root, wrongAnswerStrings.random(), Snackbar.LENGTH_SHORT).setAnchorView(binding.learningActivityArea).show()
 
-		if (specialLevelType == ENDLESS) {
-			// reset probability of the word that the user just got wrong to half that of new words and save new probabilities
-			currentWord.probability = 0.5
-			setWordProbabilities(this, seenWords.map { it.probability })
-		}
+		// reset probability of the word that the user just got wrong to half that of new words and save new probabilities
+		currentWord.probability = 0.5
+		setWordProbabilities(this, seenWords.map { it.probability })
 	}
 
 
 	fun nextScreen() {
-		when (specialLevelType) {
-			NONE -> { // world level
-				if (exerciseIterator.hasNext()) {
-
-					binding.learningProgress.progress++
-
-					supportFragmentManager.beginTransaction()
-						.replace(binding.learningActivityArea.id, exerciseIterator.next())
-						.commit()
-				}
-
-				else {
-					finishLevel()
-				}
-			}
-
-			ENDLESS -> {
-				supportFragmentManager.beginTransaction()
-					.replace(binding.learningActivityArea.id, nextEndlessExercise())
-					.commit()
-
-				// flash progress bar
-				binding.learningProgress.progress = 0
-				GlobalScope.launch {
-					repeat(100) {
-						binding.learningProgress.progress++
-						delay(1L)
-					}
-					delay(1000L)
-					binding.learningProgress.progress = 0
-				}
-			}
-		}
+		supportFragmentManager.beginTransaction()
+			.replace(binding.learningActivityArea.id, nextEndlessExercise())
+			.commit()
 	}
 
+
 	private fun nextEndlessExercise(): Fragment {
-		if (seenWords.sumByDouble { it.probability } > 1f || endlessCompleted) { // present a word that's already been seen
+		if (endlessCompleted || seenWords.sumByDouble { it.probability } > 1f) {
+			// present a word that's already been seen
+
 			currentWord = WeightedDice(seenWords.associateBy({it}, {it.probability})).roll()
 
 			return when (val word = currentWord.word) {
 				is Noun -> when (nextInt(2)) {
 					0 -> GenderFragment(word)
-					else -> TranslationFragment(Phrase(english = word.english, catalan = word.catalan))
+					else -> TranslationFragment(word)
 				}
-				is Verb -> TranslationFragment(Phrase(english = word.english, catalan = word.catalan))
-				is StressedPronoun -> TranslationFragment(Phrase(english = word.english, catalan = word.catalan))
+
+				else -> TranslationFragment(word)
 			}
 		}
 
-		else { // present a new word
+		else {
+			// try to present a new word
+
 			val indexOfNextNewWord = getPreferences(Context.MODE_PRIVATE).getInt(INDEX_OF_NEXT_NEW_WORD, 0)
 			val newWords = newWordsJsonAdapter.fromJson(readFile(resources, R.raw.new_words))!!.newWords
 
 			if (indexOfNextNewWord < newWords.size) {
+				// present a new word
+
 				val newWord = newWords[indexOfNextNewWord]
 
 				with(getPreferences(Context.MODE_PRIVATE).edit()) {
@@ -228,15 +173,13 @@ class LearningActivity : AppCompatActivity() {
 
 				currentWord = SeenWord(newWord, 1.0)
 				seenWords.add(currentWord)
+				setWordProbabilities(this, seenWords.map { it.probability })
 
-				return when (newWord) {
-					is Noun 	-> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
-					is Verb 	-> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
-					is StressedPronoun 	-> NewPhraseFragment(Phrase(english = newWord.english, catalan = newWord.catalan))
-				}
+				return NewWordFragment(newWord)
 			}
 			else {
 				// completed every single word (rare)
+
 				if (!getPreferences(Context.MODE_PRIVATE).getBoolean(ENDLESS_COMPLETED_DIALOG_SEEN, false)) { // only show dialog if it's not been seen yet
 					AlertDialog.Builder(this)
 						.setTitle("Endless mode completed")

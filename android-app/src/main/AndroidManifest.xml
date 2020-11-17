@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".learning.LearningActivity"
+        <activity android:name=".endless.LearningActivity"
             android:screenOrientation="portrait"
             android:supportsPictureInPicture="false" tools:targetApi="n"
             android:parentActivityName=".MainActivity"

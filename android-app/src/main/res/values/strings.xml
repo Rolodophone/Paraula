@@ -1,15 +1,6 @@
 <resources>
     <string name="app_name">Paraula</string>
-    <string name="settings">Settings</string>
-    <string name="world">World</string>
-    <string name="endless">Endless</string>
-    <string name="minigames">Minigames</string>
-    <string name="back">Back</string>
-    <string name="endless_caps">ENDLESS</string>
-    <string name="endless_description">Temp description</string>
-    <string name="play">Play</string>
-    <string name="stats_names">Most questions answered\nLongest time\nBest score</string>
-    <string name="close_button_text">close</string>
-    <string name="learning_translation_text_input_cd">Text input</string>
-    <string name="word_link_text">means the same as</string>
+    <string name="endless_button_text">practice</string>
+    <string name="close_button_cd">close button</string>
+    <string name="learning_translation_text_input_cd">text input</string>
 </resources>
