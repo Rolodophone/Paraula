@@ -76,6 +76,7 @@ class LearningActivity : AppCompatActivity() {
 		// for reading the new words json file at runtime
 		newWordsJsonAdapter = NewWordsJsonAdapter(Moshi.Builder().build())
 
+		// read word database
 		val newWords = newWordsJsonAdapter.fromJson(readFile(resources, R.raw.new_words))!!.newWords
 		Log.d("Init word database", "New words: $newWords")
 		val seenNewWords = newWords.take(getPreferences(Context.MODE_PRIVATE).getInt(INDEX_OF_NEXT_NEW_WORD, 0))

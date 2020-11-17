@@ -1,5 +1,6 @@
 package net.rolodophone.paraula.endless
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,15 @@ class TranslationFragment(private val word: Word) : Fragment() {
 
 	private val language = Language.values().random()
 
+	@SuppressLint("SetTextI18n")
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val root = inflater.inflate(R.layout.learning_translation_fragment, container, false) as ViewGroup
 
 		root.findViewById<TextView>(R.id.translationText).text = word.get(language).random()
+
+		if (word.getDisambiguation(language) != null) {
+			root.findViewById<TextView>(R.id.translationTextDisambiguation).text = "(${word.getDisambiguation(language)})"
+		}
 
 		val editText = root.findViewById<TextView>(R.id.translationTextInput)
 

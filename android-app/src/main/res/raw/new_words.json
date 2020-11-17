@@ -14,7 +14,8 @@
 			"gender": "MASCULINE",
 			"number": "SINGULAR",
 			"person": "THIRD",
-			"formality": null
+			"formality": null,
+			"englishDisambiguation": "masc."
 		}
 	]
 }

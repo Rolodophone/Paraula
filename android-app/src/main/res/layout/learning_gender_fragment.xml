@@ -17,10 +17,29 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/masc_button"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/noun_disambiguation"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Catalan noun" />
+
+        <TextView
+            android:id="@+id/noun_disambiguation"
+            style="@style/LearningMainText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:alpha=".7"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/masc_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/noun_text"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="(disamb.)" />
 
         <Button
             android:id="@+id/masc_button"

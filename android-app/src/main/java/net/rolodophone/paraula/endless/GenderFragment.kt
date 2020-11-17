@@ -1,5 +1,6 @@
 package net.rolodophone.paraula.endless
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import net.rolodophone.paraula.R
 import net.rolodophone.paraula.databinding.LearningGenderFragmentBinding
 
 class GenderFragment(private val noun: Noun): Fragment() {
+
+	@SuppressLint("SetTextI18n")
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val binding = DataBindingUtil.inflate<LearningGenderFragmentBinding>(inflater, R.layout.learning_gender_fragment, container, false)
 
@@ -17,6 +20,7 @@ class GenderFragment(private val noun: Noun): Fragment() {
 		binding.nounText.text = catalan
 		binding.mascButton.text = "el $catalan"
 		binding.femButton.text = "la $catalan"
+		if (noun.catalanDisambiguation != null) binding.nounDisambiguation.text = "(${noun.catalanDisambiguation})"
 
 		binding.mascButton.setOnClickListener {
 			val activity = requireActivity() as LearningActivity

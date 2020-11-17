@@ -22,6 +22,18 @@
             tools:text="Paraula" />
 
         <TextView
+            android:id="@+id/catalan_disambiguation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="26sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/catalan_words"
+            tools:text="(disamb.)" />
+
+        <TextView
             android:id="@+id/english_words"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,6 +45,18 @@
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Word" />
+
+        <TextView
+            android:id="@+id/english_disambiguation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="26sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/english_words"
+            tools:text="(disamb.)" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button"
