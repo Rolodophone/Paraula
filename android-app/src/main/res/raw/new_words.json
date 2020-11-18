@@ -1,12 +1,5 @@
 {
 	"newWords": [
-		{"type": "VERB", "catalan": ["menjar"], "english": ["eat"]},
-		{"type": "NOUN", "catalan": ["teclat"], "gender": "MASCULINE", "english": ["keyboard"]},
-		{"type": "NOUN", "catalan": ["aigua"], "gender": "FEMININE", "english": ["water"]},
-		{"type": "NOUN", "catalan": ["nas"], "gender": "MASCULINE", "english": ["nose"]},
-		{"type": "NOUN", "catalan": ["taula"], "gender": "FEMININE", "english": ["table"]},
-		{"type": "VERB", "catalan": ["cantar"], "english": ["sing"]},
-		{"type": "VERB", "catalan": ["ballar"], "english": ["dance"]},
 		{
 			"type": "STRONG_PRONOUN",
 			"catalan": ["jo"],
@@ -168,6 +161,10 @@
 			"formality": null,
 			"englishDisambiguation": "pl fem",
 			"catalanDisambiguation": "obj"
-		}
+		},
+		{"type": "EXPRESSION", 	"catalan": ["si mateix"], 	"english": ["himself"]},
+		{"type": "EXPRESSION",	"catalan": ["si mateixa"],	"english": ["herself"]},
+		{"type": "EXPRESSION",	"catalan": ["si mateixos"],	"english": ["themselves"], "englishDisambiguation": "m"},
+		{"type": "EXPRESSION",	"catalan": ["si mateixes"],	"english": ["themselves"], "englishDisambiguation": "f"}
 	]
 }

@@ -87,3 +87,12 @@ class StrongPronoun(
 	override val catalanDisambiguation: String? = null,
 	override val englishDisambiguation: String? = null
 ): Word()
+
+@TypeLabel("EXPRESSION")
+@JsonClass(generateAdapter = true)
+class Expression(
+	override val catalan: List<String>,
+	override val english: List<String>,
+	override val catalanDisambiguation: String? = null,
+	override val englishDisambiguation: String? = null
+): Word()
