@@ -168,6 +168,10 @@
 			"formality": null,
 			"englishDisambiguation": "pl fem",
 			"catalanDisambiguation": "obj"
-		}
+		},
+		{"type": "EXPRESSION", 	"catalan": ["si mateix"], 	"english": ["himself"]},
+		{"type": "EXPRESSION",	"catalan": ["si mateixa"],	"english": ["herself"]},
+		{"type": "EXPRESSION",	"catalan": ["si mateixos"],	"english": ["themselves"], "englishDisambiguation": "m"},
+		{"type": "EXPRESSION",	"catalan": ["si mateixes"],	"english": ["themselves"], "englishDisambiguation": "f"}
 	]
 }

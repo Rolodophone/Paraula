@@ -76,6 +76,24 @@
 						},
 						"required": ["type", "catalan", "english", "person", "number", "gender", "formality"],
 						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"type": {"enum": ["EXPRESSION"]},
+							"catalan": {
+								"type": "array",
+								"items": {"type": "string"}
+							},
+							"english": {
+								"type": "array",
+								"items": {"type": "string"}
+							},
+							"catalanDisambiguation": {"type": "string"},
+							"englishDisambiguation": {"type": "string"}
+						},
+						"required": ["type", "catalan", "english"],
+						"additionalProperties": false
 					}
 				]
 			}
