@@ -67,7 +67,7 @@
 							},
 							"formality": {
 								"oneOf": [
-									{"enum": ["INFORMAL", "FORMAL", "RESPECTFUL"]},
+									{"enum": ["INFORMAL", "FORMAL"]},
 									{"type": "null"}
 								]
 							},

@@ -53,7 +53,7 @@ sealed class Word {
 enum class Gender { MASCULINE, FEMININE }
 enum class Person { FIRST, SECOND, THIRD }
 enum class Number { SINGULAR, PLURAL }
-enum class Formality { INFORMAL, FORMAL, RESPECTFUL }
+enum class Formality { INFORMAL, FORMAL }
 enum class Language { CATALAN, ENGLISH }
 
 @TypeLabel("NOUN")

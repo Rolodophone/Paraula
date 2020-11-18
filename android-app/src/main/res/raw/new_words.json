@@ -9,13 +9,165 @@
 		{"type": "VERB", "catalan": ["ballar"], "english": ["dance"]},
 		{
 			"type": "STRONG_PRONOUN",
-			"catalan": ["el"],
-			"english": ["the"],
-			"gender": "MASCULINE",
+			"catalan": ["jo"],
+			"english": ["I"],
+			"person": "FIRST",
 			"number": "SINGULAR",
-			"person": "THIRD",
+			"gender": null,
+			"formality": null
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["mi"],
+			"english": ["me"],
+			"person": "FIRST",
+			"number": "SINGULAR",
+			"gender": null,
+			"formality": null
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["nosaltres"],
+			"english": ["we"],
+			"person": "FIRST",
+			"number": "PLURAL",
+			"gender": null,
 			"formality": null,
-			"englishDisambiguation": "masc."
+			"catalanDisambiguation": "nom"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["nosaltres"],
+			"english": ["us"],
+			"person": "FIRST",
+			"number": "PLURAL",
+			"gender": null,
+			"formality": null,
+			"catalanDisambiguation": "obj"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["tu"],
+			"english": ["you"],
+			"person": "SECOND",
+			"number": "SINGULAR",
+			"gender": null,
+			"formality": "INFORMAL",
+			"englishDisambiguation": "sing inf"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["vosaltres"],
+			"english": ["you"],
+			"person": "SECOND",
+			"number": "PLURAL",
+			"gender": null,
+			"formality": "INFORMAL",
+			"englishDisambiguation": "pl inf"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["vostè"],
+			"english": ["you"],
+			"person": "SECOND",
+			"number": "SINGULAR",
+			"gender": null,
+			"formality": "FORMAL",
+			"englishDisambiguation": "sing form"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["vostès"],
+			"english": ["you"],
+			"person": "SECOND",
+			"number": "PLURAL",
+			"gender": null,
+			"formality": "FORMAL",
+			"englishDisambiguation": "pl form"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["ell"],
+			"english": ["he"],
+			"person": "THIRD",
+			"number": "SINGULAR",
+			"gender": "MASCULINE",
+			"formality": null,
+			"catalanDisambiguation": "nom"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["ell"],
+			"english": ["him"],
+			"person": "THIRD",
+			"number": "SINGULAR",
+			"gender": "MASCULINE",
+			"formality": null,
+			"catalanDisambiguation": "obj"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["ella"],
+			"english": ["she"],
+			"person": "THIRD",
+			"number": "SINGULAR",
+			"gender": "FEMININE",
+			"formality": null,
+			"catalanDisambiguation": "nom"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["ella"],
+			"english": ["her"],
+			"person": "THIRD",
+			"number": "SINGULAR",
+			"gender": "FEMININE",
+			"formality": null,
+			"catalanDisambiguation": "obj"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["ells"],
+			"english": ["they"],
+			"person": "THIRD",
+			"number": "PLURAL",
+			"gender": "MASCULINE",
+			"formality": null,
+			"englishDisambiguation": "pl masc",
+			"catalanDisambiguation": "nom"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["ells"],
+			"english": ["them"],
+			"person": "THIRD",
+			"number": "PLURAL",
+			"gender": "MASCULINE",
+			"formality": null,
+			"englishDisambiguation": "pl masc",
+			"catalanDisambiguation": "obj"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["elles"],
+			"english": ["they"],
+			"person": "THIRD",
+			"number": "PLURAL",
+			"gender": "MASCULINE",
+			"formality": null,
+			"englishDisambiguation": "pl fem",
+			"catalanDisambiguation": "nom"
+		},
+		{
+			"type": "STRONG_PRONOUN",
+			"catalan": ["elles"],
+			"english": ["them"],
+			"person": "THIRD",
+			"number": "PLURAL",
+			"gender": "MASCULINE",
+			"formality": null,
+			"englishDisambiguation": "pl fem",
+			"catalanDisambiguation": "obj"
 		}
 	]
 }
