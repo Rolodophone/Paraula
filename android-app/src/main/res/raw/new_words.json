@@ -11,15 +11,6 @@
 		},
 		{
 			"type": "STRONG_PRONOUN",
-			"catalan": ["mi"],
-			"english": ["me"],
-			"person": "FIRST",
-			"number": "SINGULAR",
-			"gender": null,
-			"formality": null
-		},
-		{
-			"type": "STRONG_PRONOUN",
 			"catalan": ["nosaltres"],
 			"english": ["we"],
 			"person": "FIRST",
@@ -27,16 +18,6 @@
 			"gender": null,
 			"formality": null,
 			"catalanDisambiguation": "nom"
-		},
-		{
-			"type": "STRONG_PRONOUN",
-			"catalan": ["nosaltres"],
-			"english": ["us"],
-			"person": "FIRST",
-			"number": "PLURAL",
-			"gender": null,
-			"formality": null,
-			"catalanDisambiguation": "obj"
 		},
 		{
 			"type": "STRONG_PRONOUN",
@@ -85,18 +66,7 @@
 			"person": "THIRD",
 			"number": "SINGULAR",
 			"gender": "MASCULINE",
-			"formality": null,
-			"catalanDisambiguation": "nom"
-		},
-		{
-			"type": "STRONG_PRONOUN",
-			"catalan": ["ell"],
-			"english": ["him"],
-			"person": "THIRD",
-			"number": "SINGULAR",
-			"gender": "MASCULINE",
-			"formality": null,
-			"catalanDisambiguation": "obj"
+			"formality": null
 		},
 		{
 			"type": "STRONG_PRONOUN",
@@ -105,18 +75,7 @@
 			"person": "THIRD",
 			"number": "SINGULAR",
 			"gender": "FEMININE",
-			"formality": null,
-			"catalanDisambiguation": "nom"
-		},
-		{
-			"type": "STRONG_PRONOUN",
-			"catalan": ["ella"],
-			"english": ["her"],
-			"person": "THIRD",
-			"number": "SINGULAR",
-			"gender": "FEMININE",
-			"formality": null,
-			"catalanDisambiguation": "obj"
+			"formality": null
 		},
 		{
 			"type": "STRONG_PRONOUN",
@@ -126,19 +85,7 @@
 			"number": "PLURAL",
 			"gender": "MASCULINE",
 			"formality": null,
-			"englishDisambiguation": "pl masc",
-			"catalanDisambiguation": "nom"
-		},
-		{
-			"type": "STRONG_PRONOUN",
-			"catalan": ["ells"],
-			"english": ["them"],
-			"person": "THIRD",
-			"number": "PLURAL",
-			"gender": "MASCULINE",
-			"formality": null,
-			"englishDisambiguation": "pl masc",
-			"catalanDisambiguation": "obj"
+			"englishDisambiguation": "pl masc"
 		},
 		{
 			"type": "STRONG_PRONOUN",
@@ -148,19 +95,7 @@
 			"number": "PLURAL",
 			"gender": "MASCULINE",
 			"formality": null,
-			"englishDisambiguation": "pl fem",
-			"catalanDisambiguation": "nom"
-		},
-		{
-			"type": "STRONG_PRONOUN",
-			"catalan": ["elles"],
-			"english": ["them"],
-			"person": "THIRD",
-			"number": "PLURAL",
-			"gender": "MASCULINE",
-			"formality": null,
-			"englishDisambiguation": "pl fem",
-			"catalanDisambiguation": "obj"
+			"englishDisambiguation": "pl fem"
 		},
 		{"type": "EXPRESSION", 	"catalan": ["si mateix"], 	"english": ["himself"]},
 		{"type": "EXPRESSION",	"catalan": ["si mateixa"],	"english": ["herself"]},
