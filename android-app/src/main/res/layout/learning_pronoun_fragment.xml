@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/translationText"
+        style="@style/LearningMainText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/words_before"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Verb" />
+
+    <EditText
+        android:id="@+id/translationTextInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/learning_translation_text_input_cd"
+        android:gravity="center"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:minEms="5"
+        app:layout_constraintBaseline_toBaselineOf="@+id/words_before"
+        app:layout_constraintEnd_toStartOf="@+id/words_after"
+        app:layout_constraintStart_toEndOf="@+id/words_before"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/words_before"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/keyboard"
+        app:layout_constraintEnd_toStartOf="@+id/translationTextInput"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/translationText"
+        tools:text="Words before" />
+
+    <TextView
+        android:id="@+id/words_after"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/primary_text_dark"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/translationTextInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/translationTextInput"
+        tools:text="Words before" />
+
+    <net.rolodophone.paraula.endless.Keyboard
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

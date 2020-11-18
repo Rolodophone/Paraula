@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import net.rolodophone.paraula.R
 import net.rolodophone.paraula.databinding.LearningNewWordFragmentBinding
 
-class NewWordFragment(private val word: Word): Fragment() {
+class NewWordFragment(private val word: Translatable): Fragment() {
 
 	@SuppressLint("SetTextI18n")
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

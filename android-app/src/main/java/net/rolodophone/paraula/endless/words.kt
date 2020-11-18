@@ -12,21 +12,24 @@ class SeenWord(val word: Word, var probability: Double)
 
 
 /**
- * A representation of a single meaning of a word, in Catalan and English. Words that could be
+ * A representation of a single meaning of a word. Words that could be
  * considered synonymous but actually mean slightly different things e.g. run and sprint should
  * be in separate objects. Expressions e.g. "the time is" should be of the Expression subclass.
+ * All words that should come up in the translation exercise should implement `Translatable`.
  */
 @JsonClass(generateAdapter = true, generator = "sealed:type")
-sealed class Word {
+sealed class Word
+
+interface Translatable {
 	/**
 	 * The words in Catalan that mean exactly the same, ordered from most to least commonly used.
 	 */
-	abstract val catalan: List<String>
+	val catalan: List<String>
 
 	/**
 	 * The words in English that mean exactly the same, ordered from most to least commonly used.
 	 */
-	abstract val english: List<String>
+	val english: List<String>
 
 	fun get(language: Language) = when (language) {
 		Language.CATALAN -> catalan
@@ -36,12 +39,12 @@ sealed class Word {
 	/**
 	 * Short clarification in Catalan of what meaning of the Catalan word this object refers to.
 	 */
-	abstract val catalanDisambiguation: String?
+	val catalanDisambiguation: String?
 
 	/**
 	 * Short clarification in English of what meaning of the English word this object refers to.
 	 */
-	abstract val englishDisambiguation: String?
+	val englishDisambiguation: String?
 
 	fun getDisambiguation(language: Language) = when (language) {
 		Language.CATALAN -> catalanDisambiguation
@@ -55,6 +58,8 @@ enum class Person { FIRST, SECOND, THIRD }
 enum class Number { SINGULAR, PLURAL }
 enum class Formality { INFORMAL, FORMAL }
 enum class Language { CATALAN, ENGLISH }
+enum class SyntacticFunction { DIRECT_OBJECT, INDIRECT_OBJECT, REFLEXIVE, NEUTER }
+enum class Form { REINFORCED, ELIDED, FULL, REDUCED }
 
 @TypeLabel("NOUN")
 @JsonClass(generateAdapter = true)
@@ -64,7 +69,7 @@ class Noun(
 	val gender: Gender,
 	override val catalanDisambiguation: String? = null,
 	override val englishDisambiguation: String? = null
-): Word()
+): Word(), Translatable
 
 @TypeLabel("VERB")
 @JsonClass(generateAdapter = true)
@@ -73,7 +78,7 @@ class Verb(
 	override val english: List<String>,
 	override val catalanDisambiguation: String? = null,
 	override val englishDisambiguation: String? = null
-): Word()
+): Word(), Translatable
 
 @TypeLabel("STRONG_PRONOUN")
 @JsonClass(generateAdapter = true)
@@ -86,7 +91,7 @@ class StrongPronoun(
 	val formality: Formality?,
 	override val catalanDisambiguation: String? = null,
 	override val englishDisambiguation: String? = null
-): Word()
+): Word(), Translatable
 
 @TypeLabel("EXPRESSION")
 @JsonClass(generateAdapter = true)
@@ -95,4 +100,15 @@ class Expression(
 	override val english: List<String>,
 	override val catalanDisambiguation: String? = null,
 	override val englishDisambiguation: String? = null
+): Word(), Translatable
+
+@TypeLabel("WEAK_PRONOUN")
+@JsonClass(generateAdapter = true)
+class WeakPronoun(
+	val catalan: String,
+	val numbers: Set<Number>,
+	val persons: Set<Person>,
+	val syntacticFunctions: Set<SyntacticFunction>,
+	val genders: Set<Gender>,
+	val forms: Set<Form>
 ): Word()

@@ -151,7 +151,11 @@ class LearningActivity : AppCompatActivity() {
 					else -> TranslationFragment(word)
 				}
 
-				else -> TranslationFragment(word)
+				is WeakPronoun -> WeakPronounFragment(word)
+
+				is Translatable -> TranslationFragment(word)
+
+				else -> throw Exception("Word $word has no exercises associated with it.")
 			}
 		}
 
@@ -176,7 +180,10 @@ class LearningActivity : AppCompatActivity() {
 				seenWords.add(currentWord)
 				setWordProbabilities(this, seenWords.map { it.probability })
 
-				return NewWordFragment(newWord)
+				return when (newWord) {
+					is Translatable -> NewWordFragment(newWord)
+					is WeakPronoun -> NewWeakPronounFragment
+				}
 			}
 			else {
 				// completed every single word (rare)

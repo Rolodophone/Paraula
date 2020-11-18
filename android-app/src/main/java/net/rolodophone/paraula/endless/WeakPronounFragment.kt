@@ -10,19 +10,19 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import net.rolodophone.paraula.R
 
-class TranslationFragment(private val word: Translatable) : Fragment() {
-
-	private val language = Language.values().random()
+class WeakPronounFragment(pronoun: WeakPronoun): Fragment() {
 
 	@SuppressLint("SetTextI18n")
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val root = inflater.inflate(R.layout.learning_translation_fragment, container, false) as ViewGroup
 
-		root.findViewById<TextView>(R.id.translationText).text = word.get(language).random()
+		root.findViewById<TextView>(R.id.translationText).text = verb.catalan.random() // TODO random? or a conjugation for each synonym?
 
-		if (word.getDisambiguation(language) != null) {
-			root.findViewById<TextView>(R.id.translationTextDisambiguation).text = "(${word.getDisambiguation(language)})"
+		if (verb.catalanDisambiguation != null) {
+			root.findViewById<TextView>(R.id.translationTextDisambiguation).text = "(${verb.catalanDisambiguation})"
 		}
+
+		// TODO show text before and after
 
 		val editText = root.findViewById<TextView>(R.id.translationTextInput)
 
@@ -45,17 +45,12 @@ class TranslationFragment(private val word: Translatable) : Fragment() {
 	private fun submitTranslation(inputtedText: String) {
 		val activity = requireActivity() as LearningActivity
 
-		val otherLanguage = when (language) {
-			Language.CATALAN -> Language.ENGLISH
-			Language.ENGLISH -> Language.CATALAN
-		}
-
-		if (inputtedText in word.get(otherLanguage)) {
-			activity.onCorrect()
-			activity.nextScreen()
-		}
-		else {
-			activity.onIncorrect()
-		}
+//		if (TODO) {
+//			activity.onCorrect()
+//			activity.nextScreen()
+//		}
+//		else {
+//			activity.onIncorrect()
+//		}
 	}
 }
