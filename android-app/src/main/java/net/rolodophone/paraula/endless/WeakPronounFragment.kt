@@ -10,19 +10,15 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import net.rolodophone.paraula.R
 
-class WeakPronounFragment(pronoun: WeakPronoun): Fragment() {
+class WeakPronounFragment(private val pronoun: WeakPronoun): Fragment() {
 
 	@SuppressLint("SetTextI18n")
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-		val root = inflater.inflate(R.layout.learning_translation_fragment, container, false) as ViewGroup
+		val root = inflater.inflate(R.layout.learning_weak_pronoun_fragment, container, false) as ViewGroup
 
-		root.findViewById<TextView>(R.id.translationText).text = verb.catalan.random() // TODO random? or a conjugation for each synonym?
-
-		if (verb.catalanDisambiguation != null) {
-			root.findViewById<TextView>(R.id.translationTextDisambiguation).text = "(${verb.catalanDisambiguation})"
-		}
-
-		// TODO show text before and after
+		val variables = listOf(pronoun.numbers, pronoun.persons, pronoun.syntacticFunctions, pronoun.genders, pronoun.forms)
+		val formattedVariables = variables.map { it.random().toString() }
+		root.findViewById<TextView>(R.id.translationText).text = formattedVariables.joinToString(separator = " ")
 
 		val editText = root.findViewById<TextView>(R.id.translationTextInput)
 
@@ -45,12 +41,12 @@ class WeakPronounFragment(pronoun: WeakPronoun): Fragment() {
 	private fun submitTranslation(inputtedText: String) {
 		val activity = requireActivity() as LearningActivity
 
-//		if (TODO) {
-//			activity.onCorrect()
-//			activity.nextScreen()
-//		}
-//		else {
-//			activity.onIncorrect()
-//		}
+		if (inputtedText == pronoun.catalan) {
+			activity.onCorrect()
+			activity.nextScreen()
+		}
+		else {
+			activity.onIncorrect()
+		}
 	}
 }

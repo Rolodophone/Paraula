@@ -94,6 +94,35 @@
 						},
 						"required": ["type", "catalan", "english"],
 						"additionalProperties": false
+					},
+					{
+						"type": "object",
+						"properties": {
+							"type": {"const": "WEAK_PRONOUN"},
+							"catalan": {"type": "string"},
+							"numbers": {
+								"type": "array",
+								"items": {"enum": ["SINGULAR", "PLURAL"]}
+							},
+							"persons": {
+								"type": "array",
+								"items": {"enum": ["FIRST", "SECOND", "THIRD"]}
+							},
+							"syntacticFunctions": {
+								"type": "array",
+								"items": {"enum": ["DIRECT_OBJECT", "INDIRECT_OBJECT"]}
+							},
+							"genders": {
+								"type": "array",
+								"items": {"enum": ["MASCULINE", "FEMININE"]}
+							},
+							"forms": {
+								"type": "array",
+								"items": {"enum": ["REINFORCED", "ELIDED", "FULL", "REDUCED"]}
+							}
+						},
+						"required": ["type", "catalan", "numbers", "persons", "syntacticFunctions", "genders", "forms"],
+						"additionalProperties": false
 					}
 				]
 			},

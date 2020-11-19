@@ -155,7 +155,7 @@ class LearningActivity : AppCompatActivity() {
 
 				is Translatable -> TranslationFragment(word)
 
-				else -> throw Exception("Word $word has no exercises associated with it.")
+				else -> throw Exception("Word $word has no practice exercises associated with it.")
 			}
 		}
 
@@ -182,7 +182,8 @@ class LearningActivity : AppCompatActivity() {
 
 				return when (newWord) {
 					is Translatable -> NewWordFragment(newWord)
-					is WeakPronoun -> NewWeakPronounFragment
+					is WeakPronoun -> NewWeakPronounFragment(newWord)
+					else -> throw Exception("Word $newWord has no introductory exercises associated with it.")
 				}
 			}
 			else {

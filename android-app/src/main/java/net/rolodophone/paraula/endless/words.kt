@@ -58,7 +58,7 @@ enum class Person { FIRST, SECOND, THIRD }
 enum class Number { SINGULAR, PLURAL }
 enum class Formality { INFORMAL, FORMAL }
 enum class Language { CATALAN, ENGLISH }
-enum class SyntacticFunction { DIRECT_OBJECT, INDIRECT_OBJECT, REFLEXIVE, NEUTER }
+enum class SyntacticFunction { DIRECT_OBJECT, INDIRECT_OBJECT }
 enum class Form { REINFORCED, ELIDED, FULL, REDUCED }
 
 @TypeLabel("NOUN")
