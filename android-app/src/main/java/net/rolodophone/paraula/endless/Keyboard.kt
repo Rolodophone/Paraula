@@ -76,7 +76,7 @@ class Keyboard @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 						R.id.backspace -> {
 							backspaceIsPressed = true
 							backspace()
-							backspaceHandler.postDelayed(backspaceRunnable, 1000)
+							backspaceHandler.postDelayed(backspaceRunnable, 600)
 						}
 						R.id.more_button -> more()
 						R.id.submit_button -> inputConnection.performEditorAction(EditorInfo.IME_ACTION_DONE)
