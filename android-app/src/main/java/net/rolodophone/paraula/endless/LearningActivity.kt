@@ -59,12 +59,12 @@ class LearningActivity : AppCompatActivity() {
 		"If there's context, look at it and take a guess",
 	)
 
-	private lateinit var currentWord: SeenWord
+	lateinit var currentWord: SeenWord
 
 	private var endlessCompleted = false
 
-	private lateinit var newWordsJsonAdapter: NewWordsJsonAdapter
-	private lateinit var seenWords: MutableSet<SeenWord>
+	lateinit var newWordsJsonAdapter: NewWordsJsonAdapter
+	lateinit var seenWords: MutableSet<SeenWord>
 
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -170,15 +170,7 @@ class LearningActivity : AppCompatActivity() {
 
 				val newWord = newWords[indexOfNextNewWord]
 
-				with(getPreferences(Context.MODE_PRIVATE).edit()) {
-					putInt(INDEX_OF_NEXT_NEW_WORD, indexOfNextNewWord + 1)
-					putBoolean(ENDLESS_COMPLETED_DIALOG_SEEN, false) // if this has been set to true, reset to false because I must've added more new words
-					apply()
-				}
-
 				currentWord = SeenWord(newWord, 1.0)
-				seenWords.add(currentWord)
-				setWordProbabilities(this, seenWords.map { it.probability })
 
 				return when (newWord) {
 					is Translatable -> NewWordFragment(newWord)

@@ -51,15 +51,20 @@ fun readFile(resources: Resources, @RawRes file: Int): String {
 
 
 fun getWordProbabilities(context: Context): List<Double> {
-	return try {
+	try {
 		context.openFileInput("wordProbabilities").bufferedReader().use { file ->
-			file.readText().split(",").map { it.toDouble() }
+			val text = file.readText()
+
+			if (text == "") return listOf()
+
+			return text.split(",").map { it.toDouble() }
 		}
-	} catch (e: FileNotFoundException) {
+	}
+	catch (e: FileNotFoundException) {
 		context.openFileOutput("wordProbabilities", Context.MODE_PRIVATE).use {
 			it.write("".toByteArray())
 		}
-		listOf()
+		return listOf()
 	}
 }
 fun setWordProbabilities(context: Context, value: List<Double>) {
