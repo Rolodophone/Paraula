@@ -9,16 +9,18 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import net.rolodophone.paraula.R
+import kotlin.random.Random.Default.nextInt
 
 class WeakPronounFragment(private val pronoun: WeakPronoun): Fragment() {
+
+	private val form = nextInt(4)
 
 	@SuppressLint("SetTextI18n")
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val root = inflater.inflate(R.layout.learning_weak_pronoun_fragment, container, false) as ViewGroup
 
-		val variables = listOf(pronoun.numbers, pronoun.persons, pronoun.syntacticFunctions, pronoun.genders, pronoun.forms)
-		val formattedVariables = variables.map { it.random().toString() }
-		root.findViewById<TextView>(R.id.translationText).text = formattedVariables.joinToString(separator = " ")
+		val variables = listOf(pronoun.number, pronoun.person, pronoun.syntacticFunction, pronoun.gender, form)
+		root.findViewById<TextView>(R.id.translationText).text = variables.joinToString(separator = " ")
 
 		val editText = root.findViewById<TextView>(R.id.translationTextInput)
 
@@ -41,7 +43,7 @@ class WeakPronounFragment(private val pronoun: WeakPronoun): Fragment() {
 	private fun submitTranslation(inputtedText: String) {
 		val activity = requireActivity() as LearningActivity
 
-		if (inputtedText == pronoun.catalan) {
+		if (inputtedText == pronoun.catalanForms[form]) {
 			activity.onCorrect()
 			activity.nextScreen()
 		}

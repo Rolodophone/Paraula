@@ -59,7 +59,6 @@ enum class Number { SINGULAR, PLURAL }
 enum class Formality { INFORMAL, FORMAL }
 enum class Language { CATALAN, ENGLISH }
 enum class SyntacticFunction { DIRECT_OBJECT, INDIRECT_OBJECT }
-enum class Form { REINFORCED, ELIDED, FULL, REDUCED }
 
 @TypeLabel("NOUN")
 @JsonClass(generateAdapter = true)
@@ -105,10 +104,9 @@ class Expression(
 @TypeLabel("WEAK_PRONOUN")
 @JsonClass(generateAdapter = true)
 class WeakPronoun(
-	val catalan: String,
-	val numbers: Set<Number>,
-	val persons: Set<Person>,
-	val syntacticFunctions: Set<SyntacticFunction>,
-	val genders: Set<Gender>,
-	val forms: Set<Form>
+	val catalanForms: List<String>,
+	val number: Number,
+	val person: Person,
+	val syntacticFunction: SyntacticFunction,
+	val gender: Gender
 ): Word()

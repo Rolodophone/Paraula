@@ -18,11 +18,8 @@ class NewWeakPronounFragment(private val pronoun: WeakPronoun): Fragment() {
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 		val binding = DataBindingUtil.inflate<LearningNewWeakPronounFragmentBinding>(inflater, R.layout.learning_new_weak_pronoun_fragment, container, false)
 
-		val variables = listOf(pronoun.numbers, pronoun.persons, pronoun.syntacticFunctions, pronoun.genders, pronoun.forms)
-		val formattedVariables = variables.map { it.joinToString(separator = ",") { it.toString() } }
-
-		binding.variables.text = formattedVariables.joinToString(separator = " ")
-		binding.catalan.text = pronoun.catalan
+		binding.variables.text = listOf(pronoun.number, pronoun.person, pronoun.syntacticFunction, pronoun.gender).joinToString(separator = " ")
+		binding.catalan.text = pronoun.catalanForms.joinToString(", ")
 
 		binding.button.setOnClickListener {
 			with(requireActivity() as LearningActivity) {

@@ -1,0 +1,283 @@
+{
+	"newWords": [
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "em",
+			"numbers": ["SINGULAR"],
+			"persons": ["FIRST"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REINFORCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "m'",
+			"numbers": ["SINGULAR"],
+			"persons": ["FIRST"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["ELIDED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-me",
+			"numbers": ["SINGULAR"],
+			"persons": ["FIRST"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["FULL"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "'m",
+			"numbers": ["SINGULAR"],
+			"persons": ["FIRST"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REDUCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "et",
+			"numbers": ["SINGULAR"],
+			"persons": ["SECOND"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REINFORCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "t'",
+			"numbers": ["SINGULAR"],
+			"persons": ["SECOND"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["ELIDED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-te",
+			"numbers": ["SINGULAR"],
+			"persons": ["SECOND"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["FULL"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "'t",
+			"numbers": ["SINGULAR"],
+			"persons": ["SECOND"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REDUCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "el",
+			"numbers": ["SINGULAR"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["MASCULINE"],
+			"forms": ["REINFORCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "l'",
+			"numbers": ["SINGULAR"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["MASCULINE"],
+			"forms": ["ELIDED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-lo",
+			"numbers": ["SINGULAR"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["MASCULINE"],
+			"forms": ["FULL"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "'l",
+			"numbers": ["SINGULAR"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["MASCULINE"],
+			"forms": ["REDUCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "la*",
+			"numbers": ["SINGULAR"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["FEMININE"],
+			"forms": ["REINFORCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "l'*",
+			"numbers": ["SINGULAR"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["FEMININE"],
+			"forms": ["ELIDED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-la",
+			"numbers": ["SINGULAR"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["FEMININE"],
+			"forms": ["FULL", "REDUCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "li",
+			"numbers": ["SINGULAR"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REINFORCED", "ELIDED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-li",
+			"numbers": ["SINGULAR"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["FULL", "REDUCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "ens",
+			"numbers": ["PLURAL"],
+			"persons": ["FIRST"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REINFORCED", "ELIDED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-nos",
+			"numbers": ["PLURAL"],
+			"persons": ["FIRST"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["FULL"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "'ns",
+			"numbers": ["PLURAL"],
+			"persons": ["FIRST"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REDUCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "us",
+			"numbers": ["PLURAL"],
+			"persons": ["SECOND"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REINFORCED", "ELIDED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-vos",
+			"numbers": ["PLURAL"],
+			"persons": ["SECOND"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["FULL"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-us",
+			"numbers": ["PLURAL"],
+			"persons": ["SECOND"],
+			"syntacticFunctions": ["DIRECT_OBJECT", "INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REDUCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "els",
+			"numbers": ["PLURAL"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["MASCULINE"],
+			"forms": ["REINFORCED", "ELIDED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-los",
+			"numbers": ["PLURAL"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["MASCULINE"],
+			"forms": ["FULL"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "'ls",
+			"numbers": ["PLURAL"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["MASCULINE"],
+			"forms": ["REDUCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "les",
+			"numbers": ["PLURAL"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["FEMININE"],
+			"forms": ["REINFORCED", "ELIDED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-les",
+			"numbers": ["PLURAL"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["DIRECT_OBJECT"],
+			"genders": ["FEMININE"],
+			"forms": ["FULL", "REDUCED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "els",
+			"numbers": ["PLURAL"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REINFORCED", "ELIDED"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "-los",
+			"numbers": ["PLURAL"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["FULL"]
+		},
+		{
+			"type": "WEAK_PRONOUN",
+			"catalan": "'ls",
+			"numbers": ["PLURAL"],
+			"persons": ["THIRD"],
+			"syntacticFunctions": ["INDIRECT_OBJECT"],
+			"genders": ["MASCULINE", "FEMININE"],
+			"forms": ["REDUCED"]
+		}
+	]
+}

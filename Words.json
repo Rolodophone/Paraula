@@ -99,29 +99,16 @@
 						"type": "object",
 						"properties": {
 							"type": {"const": "WEAK_PRONOUN"},
-							"catalan": {"type": "string"},
-							"numbers": {
+							"catalanForms": {
 								"type": "array",
-								"items": {"enum": ["SINGULAR", "PLURAL"]}
+								"items": {"type": "string"}
 							},
-							"persons": {
-								"type": "array",
-								"items": {"enum": ["FIRST", "SECOND", "THIRD"]}
-							},
-							"syntacticFunctions": {
-								"type": "array",
-								"items": {"enum": ["DIRECT_OBJECT", "INDIRECT_OBJECT"]}
-							},
-							"genders": {
-								"type": "array",
-								"items": {"enum": ["MASCULINE", "FEMININE"]}
-							},
-							"forms": {
-								"type": "array",
-								"items": {"enum": ["REINFORCED", "ELIDED", "FULL", "REDUCED"]}
-							}
+							"number": {"enum": ["SINGULAR", "PLURAL"]},
+							"person": {"enum": ["FIRST", "SECOND", "THIRD"]},
+							"syntacticFunction": {"enum": ["DIRECT_OBJECT", "INDIRECT_OBJECT"]},
+							"gender": {"enum": ["MASCULINE", "FEMININE"]}
 						},
-						"required": ["type", "catalan", "numbers", "persons", "syntacticFunctions", "genders", "forms"],
+						"required": ["type", "catalanForms", "number", "person", "syntacticFunction", "gender"],
 						"additionalProperties": false
 					}
 				]

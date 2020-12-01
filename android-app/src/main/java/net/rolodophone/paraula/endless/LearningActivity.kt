@@ -146,16 +146,10 @@ class LearningActivity : AppCompatActivity() {
 			currentWord = WeightedDice(seenWords.associateBy({it}, {it.probability})).roll()
 
 			return when (val word = currentWord.word) {
-				is Noun -> when (nextInt(2)) {
-					0 -> GenderFragment(word)
-					else -> TranslationFragment(word)
-				}
-
-				is WeakPronoun -> WeakPronounFragment(word)
-
-				is Translatable -> TranslationFragment(word)
-
-				else -> throw Exception("Word $word has no practice exercises associated with it.")
+				is Noun -> 			listOf(GenderFragment(word), TranslationFragment(word)).random()
+				is WeakPronoun -> 	WeakPronounFragment(word)
+				is Translatable -> 	TranslationFragment(word)
+				else -> 			throw Exception("Word $word has no practice exercises associated with it.")
 			}
 		}
 
